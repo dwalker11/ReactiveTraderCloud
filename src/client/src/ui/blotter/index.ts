@@ -1,5 +1,3 @@
 export { default as Blotter } from './Blotter'
 export { default as BlotterContainer } from './BlotterContainer'
 export { default as DateCell } from './DateCell'
-export { default as blotterReducer }  from '../../redux/ui_blotter/reducer'
-export { default as blotterEpic } from '../../redux/ui_blotter/epics'

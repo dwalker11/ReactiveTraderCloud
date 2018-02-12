@@ -1,7 +1,5 @@
 export { default as Analytics } from './Analytics'
 export { default as AnalyticsContainer } from './AnalyticsContainer'
+export { default as AnalyticsBarChart } from './chart/AnalyticsBarChart'
 export { default as PNLChart } from './PNLChart'
 export { default as PositionsBubbleChart } from './positions-chart/PositionsBubbleChart'
-export { default as AnalyticsBarChart } from './chart/AnalyticsBarChart'
-export { default as analyticsReducer } from '../../redux/ui_analytics/reducer'
-export { default as analyticsServiceEpic} from '../../redux/ui_analytics/epics'

@@ -1,0 +1,1 @@
+export { regionsReducer } from './regionsOperations'
