@@ -1,5 +1,5 @@
 import { ACTION_TYPES } from './actions'
-import { buildNotification } from '../notification/notificationUtils'
+import { buildNotification } from '../ui_notification/notificationUtils'
 
 const updateSpotTile = (state, symbol, value) => {
   return {

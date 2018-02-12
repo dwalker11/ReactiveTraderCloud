@@ -1,6 +1,6 @@
-import { ACTION_TYPES as REF_ACTION_TYPES } from '../../redux/actions/referenceDataActions'
+import { ACTION_TYPES as REF_ACTION_TYPES } from '../actions/referenceDataActions'
 import { createNewTradesAction } from './actions'
-import { CurrencyPair, Trade } from '../../types'
+import { CurrencyPair, Trade } from '../../types/index'
 
 const subscribeOpenFinToBlotterData = (openFin, store) => () => {
   const trades: Trade[] = store.getState().blotterService.trades
