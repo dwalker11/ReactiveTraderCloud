@@ -1,4 +1,4 @@
-import './popoutRegion.scss'
+import './styles/popoutRegion.scss'
 
 import logger from '../../../system/logger'
 

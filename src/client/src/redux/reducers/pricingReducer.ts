@@ -3,7 +3,7 @@ import * as _ from 'lodash'
 import { SpotPriceTick } from '../../types/spotPriceTick'
 import { PriceMovementTypes } from '../../types/priceMovementTypes'
 import { ACTION_TYPES } from '../actions/pricingActions'
-import { buildNotification } from '../../ui/notification/notificationUtils'
+import { buildNotification } from '../ui_notification/notificationUtils'
 
 interface PricingOperationsReducerState {
   [symbol: string]: SpotPriceTick

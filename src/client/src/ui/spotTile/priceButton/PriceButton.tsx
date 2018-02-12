@@ -2,7 +2,7 @@ import * as React from 'react'
 import * as classnames from 'classnames'
 
 import { Direction } from '../../../types'
-import './PriceButtonStyles.scss'
+import './styles/PriceButtonStyles.scss'
 import { CurrencyPair } from '../../../types/currencyPair'
 import { Rate } from '../../../types/rate'
 

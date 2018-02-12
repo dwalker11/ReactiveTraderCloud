@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 import * as PropTypes from 'prop-types'
 import FooterView, { Services } from './FooterView'
 import { bindActionCreators, Dispatch } from 'redux'
-import { toggleStatusServices } from './FooterOperations'
-import { Connections } from '../../connectionStatusOperations'
+import { toggleStatusServices } from '../../redux/ui_footer/FooterOperations'
+import { Connections } from '../../redux/root/connectionStatusOperations'
 
 interface FooterContainerOwnProps {
 

@@ -1,6 +1,6 @@
 import * as React from 'react'
 import * as classnames from 'classnames'
-import './spotTileControls.scss'
+import './styles/spotTileControls.scss'
 import Environment from '../../../system/environment'
 
 interface SpotTileControlsProps {

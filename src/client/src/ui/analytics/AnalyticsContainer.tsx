@@ -4,16 +4,14 @@ import * as PropTypes from 'prop-types'
 import { getPnlChartModel } from './model/pnlChartModel'
 import { getPositionsChartModel } from './model/positionsChartModel'
 import Analytics from './Analytics'
-import './AnalyticsStyles.scss'
+import './styles/AnalyticsStyles.scss'
 import Environment from '../../system/environment'
-import { addRegion, openWindow, regionsSettings } from '../../regions/regionsOperations'
+import { addRegion, openWindow, regionsSettings } from '../../redux/ui_regions/regionsOperations'
 import { CurrencyPair } from '../../types/currencyPair'
 
 const analyticsRegionSettings = regionsSettings('Analytics', 400, 800, false)
 
-interface AnalyticsContainerOwnProps {
-
-}
+interface AnalyticsContainerOwnProps {}
 
 interface AnalyticsContainerStateProps {
   isConnected: boolean
@@ -30,7 +28,6 @@ interface AnalyticsContainerDispatchProps {
 type AnalyticsContainerProps = AnalyticsContainerOwnProps & AnalyticsContainerStateProps & AnalyticsContainerDispatchProps
 
 class AnalyticsContainer extends React.Component<AnalyticsContainerProps, any> {
-
   static contextTypes = {
     openFin: PropTypes.object
   }
@@ -40,7 +37,6 @@ class AnalyticsContainer extends React.Component<AnalyticsContainerProps, any> {
   }
 
   render() {
-
     const { analyticsService, isConnected, currencyPairs } = this.props
     const openFin = this.context.openFin
     const positionsChartModel = getPositionsChartModel(analyticsService.currentPositions)
@@ -48,30 +44,34 @@ class AnalyticsContainer extends React.Component<AnalyticsContainerProps, any> {
     const canPopout = !Environment.isRunningInIE()
     const onPopoutClick = this.props.onPopoutClick(openFin)
     return (
-      <Analytics currencyPairs={currencyPairs}
-                 canPopout={canPopout}
-                 isConnected={isConnected}
-                 onPopoutClick={onPopoutClick}
-                 pnlChartModel={pnlChartModel}
-                 positionsChartModel={positionsChartModel}/>
+      <Analytics
+        currencyPairs={currencyPairs}
+        canPopout={canPopout}
+        isConnected={isConnected}
+        onPopoutClick={onPopoutClick}
+        pnlChartModel={pnlChartModel}
+        positionsChartModel={positionsChartModel}
+      />
     )
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
-    onPopoutClick: (openFin) => {
-      return () => { dispatch(openWindow(analyticsRegion, openFin))}
+    onPopoutClick: openFin => {
+      return () => {
+        dispatch(openWindow(analyticsRegion, openFin))
+      }
     },
     onComponentMount: () => {
       dispatch(addRegion(analyticsRegion))
-    },
+    }
   }
 }
 
 function mapStateToProps(state: any) {
   const { analyticsService, compositeStatusService, displayAnalytics, currencyPairs } = state
-  const isConnected =  compositeStatusService && compositeStatusService.analytics && compositeStatusService.analytics.isConnected || false
+  const isConnected = (compositeStatusService && compositeStatusService.analytics && compositeStatusService.analytics.isConnected) || false
   return { analyticsService, isConnected, displayAnalytics, currencyPairs }
 }
 
@@ -81,7 +81,7 @@ const analyticsRegion = {
   id: 'analytics',
   isTearedOff: false,
   container: ConnectedAnalyticsContainer,
-  settings: analyticsRegionSettings,
+  settings: analyticsRegionSettings
 }
 
 export default ConnectedAnalyticsContainer

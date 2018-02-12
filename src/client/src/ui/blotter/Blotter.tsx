@@ -9,7 +9,7 @@ import { BaseCell, getCellClassName } from './DefaultCell'
 import { timeFormat } from 'd3-time-format'
 import * as numeral from 'numeral'
 
-import './BlotterStyles.scss'
+import './styles/BlotterStyles.scss'
 
 type TradeRow = any
 

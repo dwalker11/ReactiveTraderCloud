@@ -1,7 +1,7 @@
 import * as React from 'react'
 import * as classNames from 'classnames'
 
-import './DefaultCellStyles.scss'
+import './styles/DefaultCellStyles.scss'
 
 import { TradeStatus } from '../../types/tradeStatus'
 
