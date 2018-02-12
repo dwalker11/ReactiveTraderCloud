@@ -1,15 +1,13 @@
+import * as _ from 'lodash'
+import * as PropTypes from 'prop-types'
 import * as React from 'react'
 import { connect } from 'react-redux'
-import * as PropTypes from 'prop-types'
-import { addRegion, openWindow } from '../../redux/ui_regions/regionsOperations'
 import SpotTile from './SpotTile'
-import { dismissNotification, displayCurrencyChart, executeTrade, spotRegionSettings, undockTile } from '../../redux/ui_spotTile/actions'
-import { CurrencyPair, Direction } from '../../types/'
-import { createDeepEqualSelector } from '../utils/mapToPropsSelectorFactory'
-import { SpotPriceTick } from '../../types/spotPriceTick'
 import { createTradeRequest, DEFAULT_NOTIONAL, TradeRequest } from './spotTileUtils'
-import { SpotTileData } from '../../types/spotTileData'
-import * as _ from 'lodash'
+import { addRegion, openWindow } from '../../redux/ui_regions'
+import { dismissNotification, displayCurrencyChart, executeTrade, spotRegionSettings, undockTile } from '../../redux/ui_spotTile/actions'
+import { CurrencyPair, Direction, SpotPriceTick, SpotTileData } from '../../types'
+import { createDeepEqualSelector } from '../utils/mapToPropsSelectorFactory'
 
 const buildSpotTileDataObject = (tileData, spotTick: SpotPriceTick, currencyPair: CurrencyPair) => {
   const tileDataObject: any = { ...tileData, ...spotTick, ...currencyPair }

@@ -1,13 +1,13 @@
+import * as PropTypes from 'prop-types'
 import * as React from 'react'
 import { connect } from 'react-redux'
-import * as PropTypes from 'prop-types'
+import Analytics from './Analytics'
 import { getPnlChartModel } from './model/pnlChartModel'
 import { getPositionsChartModel } from './model/positionsChartModel'
-import Analytics from './Analytics'
 import './styles/AnalyticsStyles.scss'
+import { addRegion, openWindow, regionsSettings } from '../../redux/ui_regions'
 import Environment from '../../system/environment'
-import { addRegion, openWindow, regionsSettings } from '../../redux/ui_regions/regionsOperations'
-import { CurrencyPair } from '../../types/currencyPair'
+import { CurrencyPair } from '../../types'
 
 const analyticsRegionSettings = regionsSettings('Analytics', 400, 800, false)
 

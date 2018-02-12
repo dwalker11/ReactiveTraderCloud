@@ -1,1 +1,3 @@
-export { default as footerReducer, footerEpic } from './FooterOperations'
+export { toggleStatusServices, openLinks } from './actions'
+export { default as footerEpic } from './epics'
+export { default as footerReducer } from './reducer'

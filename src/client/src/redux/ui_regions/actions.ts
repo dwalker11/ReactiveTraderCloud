@@ -20,28 +20,3 @@ export const ACTION_TYPES = {
 export const openWindow = createAction(ACTION_TYPES.REGION_OPEN_WINDOW, (payload, openFin) => ({ ...payload, openFin }))
 // onComponentMount
 export const addRegion = createAction(ACTION_TYPES.REGION_ADD, payload => payload)
-
-const changeRegionTearOffStatus = (state, payload, status) => ({
-  ...state,
-  [payload.id]: {
-    ...state[payload.id],
-    isTearedOff: status
-  }
-})
-
-export const regionsReducer = (state: any = {}, action) => {
-  switch (action.type) {
-    case ACTION_TYPES.REGION_ADD:
-      const newRegion = action.payload
-      return {
-        [newRegion.id]: newRegion,
-        ...state
-      }
-    case ACTION_TYPES.REGION_ATTACH_WINDOW:
-      return changeRegionTearOffStatus(state, action.payload, false)
-    case ACTION_TYPES.REGION_TEAROFF_WINDOW:
-      return changeRegionTearOffStatus(state, action.payload, true)
-    default:
-      return state
-  }
-}

@@ -1,9 +1,9 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
-import NotionalInput from './NotionalInput'
 import { bindActionCreators, Dispatch } from 'redux'
-import { NotionalUpdate, onNotionalInputChange } from '../../../redux/ui_spotTile_notional/NotionalOperations'
-import { CurrencyPair }  from '../../../types'
+import NotionalInput from './NotionalInput'
+import { NotionalUpdate, onNotionalInputChange } from '../../../redux/ui_spotTile_notional'
+import { CurrencyPair } from '../../../types'
 
 interface NotionalContainerOwnProps {
   className: string
@@ -21,7 +21,6 @@ interface NotionalContainerDispatchProps {
 type NotionalContainerProps = NotionalContainerOwnProps & NotionalContainerStateProps & NotionalContainerDispatchProps
 
 class NotionalContainer extends React.Component<NotionalContainerProps, any> {
-
   render() {
     const notional = this.props.notionals[this.props.currencyPair.symbol] || 1000000
     const currencyPairSymbol = this.props.currencyPair.symbol
@@ -30,18 +29,24 @@ class NotionalContainer extends React.Component<NotionalContainerProps, any> {
         className={this.props.className}
         notional={notional}
         currencyPair={this.props.currencyPair}
-        onNotionalInputChange={(value: number) => this.props.onNotionalInputChange({
-          currencyPairSymbol,
-          value,
-        })}
+        onNotionalInputChange={(value: number) =>
+          this.props.onNotionalInputChange({
+            currencyPairSymbol,
+            value
+          })
+        }
       />
     )
   }
 }
 
-const mapDispatchToProps = (dispatch: Dispatch<any>) => bindActionCreators({
-  onNotionalInputChange
-}, dispatch)
+const mapDispatchToProps = (dispatch: Dispatch<any>) =>
+  bindActionCreators(
+    {
+      onNotionalInputChange
+    },
+    dispatch
+  )
 
 function mapStateToProps({ notionals }) {
   return { notionals }

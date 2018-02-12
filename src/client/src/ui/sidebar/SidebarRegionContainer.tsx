@@ -1,12 +1,10 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
-import { SidebarRegionView } from './SidebarRegionView'
-import { toggleAnalytics } from '../../redux/ui_sidebar/SidebarRegionOperations'
 import { bindActionCreators, Dispatch } from 'redux'
+import { SidebarRegionView } from './SidebarRegionView'
+import { toggleAnalytics } from '../../redux/ui_sidebar'
 
-interface SidebarRegionContainerOwnProps {
-
-}
+interface SidebarRegionContainerOwnProps {}
 
 interface SidebarRegionContainerStateProps {
   displayAnalytics: boolean
@@ -19,23 +17,21 @@ interface SidebarRegionContainerDispatchProps {
 type SidebarRegionContainerProps = SidebarRegionContainerOwnProps & SidebarRegionContainerStateProps & SidebarRegionContainerDispatchProps
 
 class SidebarRegionContainer extends React.Component<SidebarRegionContainerProps, any> {
-
   render() {
-    return (
-        <SidebarRegionView
-          displayAnalytics={this.props.displayAnalytics}
-          toggleAnalytics={this.props.toggleAnalytics}
-        />
-    )
+    return <SidebarRegionView displayAnalytics={this.props.displayAnalytics} toggleAnalytics={this.props.toggleAnalytics} />
   }
 }
 
 const mapStateToProps = ({ displayAnalytics }) => ({
-  displayAnalytics,
+  displayAnalytics
 })
 
-const mapDispatchToProps = (dispatch: Dispatch<any>) => bindActionCreators({
-  toggleAnalytics,
-},                                                                         dispatch)
+const mapDispatchToProps = (dispatch: Dispatch<any>) =>
+  bindActionCreators(
+    {
+      toggleAnalytics
+    },
+    dispatch
+  )
 
 export default connect(mapStateToProps, mapDispatchToProps)(SidebarRegionContainer)

@@ -1,1 +1,2 @@
-export { default as notionalsReducer } from './NotionalOperations'
+export { onNotionalInputChange } from './actions'
+export { default as notionalsReducer, NotionalUpdate } from './reducer'

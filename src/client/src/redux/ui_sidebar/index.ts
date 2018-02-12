@@ -1,1 +1,2 @@
-export { default as sidebarRegionReducer } from './SidebarRegionOperations'
+export { toggleAnalytics } from './actions'
+export { default as sidebarRegionReducer } from './reducer'
