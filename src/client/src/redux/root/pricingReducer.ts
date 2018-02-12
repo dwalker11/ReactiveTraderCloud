@@ -2,7 +2,7 @@ import * as keyBy from 'lodash.keyby'
 import * as _ from 'lodash'
 import { SpotPriceTick } from '../../types/spotPriceTick'
 import { PriceMovementTypes } from '../../types/priceMovementTypes'
-import { ACTION_TYPES } from '../actions/pricingActions'
+import { ACTION_TYPES } from './pricingActions'
 import { buildNotification } from '../ui_notification/notificationUtils'
 
 interface PricingOperationsReducerState {

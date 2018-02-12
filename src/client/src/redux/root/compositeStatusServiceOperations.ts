@@ -1,6 +1,6 @@
 import { createAction, handleActions } from 'redux-actions'
 import * as _ from 'lodash'
-import { ACTION_TYPES as REF_ACTION_TYPES } from '../actions/referenceDataActions'
+import { ACTION_TYPES as REF_ACTION_TYPES } from './referenceDataActions'
 import { ServiceStatus, ServiceInstanceStatus } from '../../types/index'
 
 export enum ACTION_TYPES {

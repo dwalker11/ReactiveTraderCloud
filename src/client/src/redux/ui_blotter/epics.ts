@@ -1,4 +1,4 @@
-import { ACTION_TYPES as REF_ACTION_TYPES } from '../actions/referenceDataActions'
+import { ACTION_TYPES as REF_ACTION_TYPES } from '../root/referenceDataActions'
 import { createNewTradesAction } from './actions'
 import { CurrencyPair, Trade } from '../../types/index'
 

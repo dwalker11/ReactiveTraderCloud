@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs/Rx'
 import { Direction } from '../../types/index'
-import { ACTION_TYPES as REF_ACTION_TYPES } from '../actions/referenceDataActions'
-import { ACTION_TYPES as PRICING_ACTION_TYPES } from '../actions/pricingActions'
+import { ACTION_TYPES as REF_ACTION_TYPES } from '../root/referenceDataActions'
+import { ACTION_TYPES as PRICING_ACTION_TYPES } from '../root/pricingActions'
 import { ACTION_TYPES as SPOT_TILE_ACTION_TYPES } from './actions';
 import { combineEpics } from 'redux-observable'
 import { SpotPrice } from '../../types/spotPrice'
