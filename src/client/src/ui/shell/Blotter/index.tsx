@@ -3,11 +3,11 @@ import * as PropTypes from 'prop-types'
 import * as React from 'react'
 import { connect } from 'react-redux'
 import sizeMe from 'react-sizeme'
-import Blotter from './Blotter'
-import { blotterRegionsSettings } from '../../redux/ui_blotter/reducer'
-import { openWindow, addRegion } from '../../redux/ui_regions'
-import { CurrencyPair } from '../../types'
-import Environment from '../../system/environment'
+import Blotter from './blotter'
+import { blotterRegionsSettings } from '../../../redux/ui_blotter/reducer'
+import { openWindow, addRegion } from '../../../redux/ui_regions'
+import { CurrencyPair } from '../../../types'
+import Environment from '../../../system/environment'
 
 interface BlotterContainerProps {
   blotterService: any
@@ -74,3 +74,4 @@ const blotterRegion = {
 }
 
 export default ConnectedBlotterContainer
+export { default as Blotter } from './blotter'
