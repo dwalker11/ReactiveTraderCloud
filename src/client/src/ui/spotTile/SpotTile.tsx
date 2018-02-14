@@ -1,16 +1,13 @@
-import * as React from 'react'
-import * as classnames from 'classnames'
-import { TradeNotification, SpotTileControls } from './'
-import * as moment from 'moment'
 import './styles/SpotTileStyles.scss'
-import NotionalContainer from './notional/NotionalContainer'
-import { NotificationType } from '../../types'
-import { CurrencyPair } from '../../types/currencyPair'
-import PriceControlsView from './priceControlsView/PriceControlsView'
-import { SpotTileData } from '../../types/spotTileData'
-import { SPOT_DATE_FORMAT } from './spotTileUtils'
+import * as classnames from 'classnames'
 import * as _ from 'lodash'
-import { Notification } from '../../types/notification'
+import * as moment from 'moment'
+import * as React from 'react'
+import { TradeNotification, SpotTileControls } from './'
+import NotionalContainer from './notional/NotionalContainer'
+import PriceControlsView from './priceControlsView/PriceControlsView'
+import { SPOT_DATE_FORMAT } from './spotTileUtils'
+import { CurrencyPair, Notification, NotificationType, SpotTileData } from '../../types'
 
 export interface SpotTileProps {
   currencyPair: CurrencyPair
@@ -25,8 +22,7 @@ export interface SpotTileProps {
 }
 
 export default class SpotTile extends React.Component<SpotTileProps, {}> {
-
-  shouldComponentUpdate(nextProps:SpotTileProps, nextState: {}) {
+  shouldComponentUpdate(nextProps: SpotTileProps, nextState: {}) {
     return !_.isEqual(nextProps.spotTileData, this.props.spotTileData)
   }
 
@@ -48,11 +44,10 @@ export default class SpotTile extends React.Component<SpotTileProps, {}> {
     const { isTradeExecutionInFlight, notification, priceStale } = this.props.spotTileData
     const hasNotification = !!notification
     const className = classnames('spot-tile', {
-      'spot-tile--stale': (/*!pricingConnected ||*/ priceStale) &&
-      !(hasNotification && notification.notificationType === NotificationType.Trade),
+      'spot-tile--stale': /*!pricingConnected ||*/ priceStale && !(hasNotification && notification.notificationType === NotificationType.Trade),
       'spot-tile--readonly': !executionConnected,
       'spot-tile--executing': isTradeExecutionInFlight,
-      'spot-tile--error': hasNotification && notification.hasError,
+      'spot-tile--error': hasNotification && notification.hasError
     })
 
     return className
@@ -62,11 +57,13 @@ export default class SpotTile extends React.Component<SpotTileProps, {}> {
     const { onPopoutClick, undockTile, displayCurrencyChart, isRunningInOpenFin, spotTileData } = this.props
 
     return (
-      <SpotTileControls onPopoutClick={onPopoutClick}
-                        currencyChartIsOpening={spotTileData.currencyChartIsOpening}
-                        displayCurrencyChart={displayCurrencyChart}
-                        isRunningInOpenFin={isRunningInOpenFin}
-                        undockTile={undockTile}/>
+      <SpotTileControls
+        onPopoutClick={onPopoutClick}
+        currencyChartIsOpening={spotTileData.currencyChartIsOpening}
+        displayCurrencyChart={displayCurrencyChart}
+        isRunningInOpenFin={isRunningInOpenFin}
+        undockTile={undockTile}
+      />
     )
   }
 
@@ -75,12 +72,7 @@ export default class SpotTile extends React.Component<SpotTileProps, {}> {
     const title = `${currencyPair.base} / ${currencyPair.terms}`
     if (spotTileData === null) return null
 
-    return (
-      <PriceControlsView currencyPair={currencyPair}
-                         title={title}
-                         spotTileData={spotTileData}
-                         executeTrade={executeTrade}/>
-    )
+    return <PriceControlsView currencyPair={currencyPair} title={title} spotTileData={spotTileData} executeTrade={executeTrade} />
   }
 
   getSpotTileContent() {
@@ -90,18 +82,17 @@ export default class SpotTile extends React.Component<SpotTileProps, {}> {
     const spotDateClass = classnames('spot-tile__delivery', { hide: hasNotification })
     const formattedDate = spotTileData ? moment(spotTileData.valueDate).format(SPOT_DATE_FORMAT) : ''
 
-    return (<div>
-      <span className="spot-tile__execution-label">Executing</span>
-      {this.createPriceComponents()}
-      <NotionalContainer
-        className={notionalInputClass}
-        currencyPair={currencyPair}
-      />
-      <div className={spotDateClass}>
-        <span className="spot-tile__tenor">SP</span>
-        <span className="spot-tile__delivery-date">. {formattedDate}</span>
+    return (
+      <div>
+        <span className="spot-tile__execution-label">Executing</span>
+        {this.createPriceComponents()}
+        <NotionalContainer className={notionalInputClass} currencyPair={currencyPair} />
+        <div className={spotDateClass}>
+          <span className="spot-tile__tenor">SP</span>
+          <span className="spot-tile__delivery-date">. {formattedDate}</span>
+        </div>
       </div>
-    </div>)
+    )
   }
 
   createNotificationView(notification: Notification) {
@@ -110,12 +101,11 @@ export default class SpotTile extends React.Component<SpotTileProps, {}> {
         <TradeNotification
           notification={notification}
           currencyPair={this.props.currencyPair}
-          onDismissedClicked={() => this.props.onNotificationDismissedClick()}/>
+          onDismissedClicked={() => this.props.onNotificationDismissedClick()}
+        />
       )
     } else if (notification.notificationType === NotificationType.Text) {
-      return (
-        <div className="spot-tile__notification-message">{notification.message}</div>
-      )
+      return <div className="spot-tile__notification-message">{notification.message}</div>
     } else {
       throw new Error(`Unknown notification type ${notification.notificationType}`)
     }

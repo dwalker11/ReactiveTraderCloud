@@ -40,6 +40,8 @@ class NotionalContainer extends React.Component<NotionalContainerProps, any> {
   }
 }
 
+const mapStateToProps = ({ notionals }) => ({ notionals })
+
 const mapDispatchToProps = (dispatch: Dispatch<any>) =>
   bindActionCreators(
     {
@@ -47,9 +49,5 @@ const mapDispatchToProps = (dispatch: Dispatch<any>) =>
     },
     dispatch
   )
-
-function mapStateToProps({ notionals }) {
-  return { notionals }
-}
 
 export default connect(mapStateToProps, mapDispatchToProps)(NotionalContainer)
