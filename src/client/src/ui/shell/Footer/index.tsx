@@ -2,9 +2,9 @@ import * as PropTypes from 'prop-types'
 import * as React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators, Dispatch } from 'redux'
-import FooterView, { Services } from './FooterView'
-import { Connections } from '../../redux/root/connectionStatusOperations'
-import { toggleStatusServices } from '../../redux/ui_footer'
+import FooterView, { Services } from './footerView'
+import { Connections } from '../../../redux/root/connectionStatusOperations'
+import { toggleStatusServices } from '../../../redux/ui_footer'
 
 interface FooterContainerOwnProps {}
 
@@ -52,3 +52,4 @@ function mapStateToProps({ compositeStatusService, displayStatusServices, connec
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(FooterContainer)
+export { default as FooterView } from './footerView'
