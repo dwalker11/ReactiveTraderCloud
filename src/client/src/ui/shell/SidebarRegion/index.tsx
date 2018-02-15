@@ -1,8 +1,8 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators, Dispatch } from 'redux'
-import { SidebarRegionView } from './SidebarRegionView'
-import { toggleAnalytics } from '../../redux/ui_sidebar'
+import SidebarRegionView from './sidebarRegionView'
+import { toggleAnalytics } from '../../../redux/ui_sidebar'
 
 interface SidebarRegionContainerOwnProps {}
 
@@ -34,4 +34,6 @@ const mapDispatchToProps = (dispatch: Dispatch<any>) =>
     dispatch
   )
 
-export default connect(mapStateToProps, mapDispatchToProps)(SidebarRegionContainer)
+const ConnectedSidebarRegionContainer = connect(mapStateToProps, mapDispatchToProps)(SidebarRegionContainer)
+
+export default ConnectedSidebarRegionContainer

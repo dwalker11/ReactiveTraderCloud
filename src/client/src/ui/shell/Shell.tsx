@@ -7,10 +7,10 @@ import * as React from 'react'
 import BlotterContainer from './Blotter'
 import FooterContainer from './Footer'
 import Modal from './Modal'
+import SidebarRegionContainer from './SidebarRegion'
 import TradeNotificationContainer from './TradeNotification'
 import WorkspaceContainer from './Workspace'
 import RegionWrapper from '../regions/RegionWrapper'
-import SidebarRegionContainer from '../sidebar/SidebarRegionContainer'
 
 export interface ShellProps {
   sessionExpired: boolean
