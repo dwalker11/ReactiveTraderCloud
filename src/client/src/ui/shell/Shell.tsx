@@ -8,9 +8,9 @@ import BlotterContainer from './Blotter'
 import FooterContainer from './Footer'
 import Modal from './Modal'
 import TradeNotificationContainer from './TradeNotification'
+import WorkspaceContainer from './Workspace'
 import RegionWrapper from '../regions/RegionWrapper'
 import SidebarRegionContainer from '../sidebar/SidebarRegionContainer'
-import { WorkspaceContainer } from '../workspace/'
 
 export interface ShellProps {
   sessionExpired: boolean

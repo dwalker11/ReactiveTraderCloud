@@ -2,11 +2,9 @@ import * as _ from 'lodash'
 import * as React from 'react'
 import './styles/WorkspaceContainerStyles.scss'
 import { connect } from 'react-redux'
-import RegionWrapper from '../regions/RegionWrapper'
-import ConnectedSpotTileContainer from '../spotTile/SpotTileContainer'
-import { createDeepEqualSelector } from '../utils/mapToPropsSelectorFactory'
-
-const getSpotTileKeys = createDeepEqualSelector((state: any) => Object.keys(state.currencyPairs), spotTilesKeys => spotTilesKeys)
+import ConnectedSpotTileContainer from './SpotTile'
+import RegionWrapper from '../../regions/RegionWrapper'
+import { createDeepEqualSelector } from '../../utils/mapToPropsSelectorFactory'
 
 interface WorkspaceContainerOwnProps {}
 
@@ -49,10 +47,13 @@ export class WorkspaceContainer extends React.Component<WorkspaceContainerProps,
   }
 }
 
+const getSpotTileKeys = createDeepEqualSelector((state: any) => Object.keys(state.currencyPairs), spotTilesKeys => spotTilesKeys)
+
 function mapStateToProps(state: any) {
   return {
     spotTileKeys: getSpotTileKeys(state)
   }
 }
 
+// The Actual container
 export default connect(mapStateToProps)(WorkspaceContainer)
