@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
+import Shell from './shell'
 import { reconnect } from '../../redux/ui_shell/actions'
-import Shell from './Shell'
 import { ConnectionStatus } from '../../types'
 
 function mapStateToProps({ connectionStatus }) {
@@ -8,4 +8,6 @@ function mapStateToProps({ connectionStatus }) {
   return { sessionExpired }
 }
 
-export default connect(mapStateToProps, { reconnect })(Shell)
+const ConnectedShellContainer = connect(mapStateToProps, { reconnect })(Shell)
+
+export default ConnectedShellContainer
