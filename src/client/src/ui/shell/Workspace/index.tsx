@@ -16,6 +16,7 @@ interface WorkspaceContainerDispatchProps {}
 
 type WorkspaceContainerProps = WorkspaceContainerOwnProps & WorkspaceContainerStateProps & WorkspaceContainerDispatchProps
 
+// Presentational component
 export class WorkspaceContainer extends React.Component<WorkspaceContainerProps, {}> {
   render() {
     return (

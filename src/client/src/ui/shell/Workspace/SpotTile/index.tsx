@@ -2,12 +2,12 @@ import * as _ from 'lodash'
 import * as PropTypes from 'prop-types'
 import * as React from 'react'
 import { connect } from 'react-redux'
-import SpotTile from './SpotTile'
+import SpotTile from './spotTile'
 import { createTradeRequest, DEFAULT_NOTIONAL, TradeRequest } from './spotTileUtils'
-import { addRegion, openWindow } from '../../redux/ui_regions'
-import { dismissNotification, displayCurrencyChart, executeTrade, spotRegionSettings, undockTile } from '../../redux/ui_spotTile/actions'
-import { CurrencyPair, Direction, SpotPriceTick, SpotTileData } from '../../types'
-import { createDeepEqualSelector } from '../utils/mapToPropsSelectorFactory'
+import { addRegion, openWindow } from '../../../../redux/ui_regions'
+import { dismissNotification, displayCurrencyChart, executeTrade, spotRegionSettings, undockTile } from '../../../../redux/ui_spotTile/actions'
+import { CurrencyPair, Direction, SpotPriceTick, SpotTileData } from '../../../../types'
+import { createDeepEqualSelector } from '../../../utils/mapToPropsSelectorFactory'
 
 const buildSpotTileDataObject = (tileData, spotTick: SpotPriceTick, currencyPair: CurrencyPair) => {
   const tileDataObject: any = { ...tileData, ...spotTick, ...currencyPair }
@@ -61,6 +61,7 @@ class SpotTileContainer extends React.Component<SpotTileContainerProps, any> {
     const shouldUpdate = !_.isEqual(this.props.spotTilesData, nextProps.spotTilesData)
     return shouldUpdate
   }
+
   render() {
     const openFin = this.context.openFin
     const key = this.props.id
@@ -77,6 +78,7 @@ class SpotTileContainer extends React.Component<SpotTileContainerProps, any> {
       onNotificationDismissedClick: this.props.onNotificationDismissedClick(this.props.id),
       displayCurrencyChart: this.props.displayCurrencyChart(openFin, this.props.id)
     }
+
     return <SpotTile {...tileProps} />
   }
 
@@ -136,12 +138,12 @@ const makeMapStateToProps = () => {
     const executionConnected = compositeStatusService && compositeStatusService.execution && compositeStatusService.execution.isConnected
     const isConnected = compositeStatusService && compositeStatusService.analytics && compositeStatusService.analytics.isConnected
     return {
+      notionals,
       isConnected,
       executionConnected,
       displayAnalytics,
       currencyPair: getCurrencyPair(state, props),
-      spotTilesData: getSpotTileData(state, props),
-      notionals
+      spotTilesData: getSpotTileData(state, props)
     }
   }
 
@@ -149,6 +151,7 @@ const makeMapStateToProps = () => {
 }
 
 const ConnectedSpotTileContainer = connect(makeMapStateToProps, mapDispatchToProps)(SpotTileContainer)
+
 const spotTileRegion = id => ({
   id,
   isTearedOff: false,
