@@ -85,7 +85,7 @@ const analyticsRegion = {
 }
 
 export default ConnectedAnalyticsContainer
-export { default as Analytics } from './Analytics'
+export { default as Analytics } from './analytics'
 export { default as AnalyticsBarChart } from './AnalyticsBarChart'
 export { default as PNLChart } from './PNLChart'
 export { default as PositionsBubbleChart } from './PositionsBubbleChart'

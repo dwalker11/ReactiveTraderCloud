@@ -16,7 +16,7 @@ export interface PositionsBubbleChartProps {
   }
 }
 
-export class PositionsBubbleChart extends React.Component<PositionsBubbleChartProps, any> {
+class PositionsBubbleChart extends React.Component<PositionsBubbleChartProps, any> {
   force: any
   scales: any
   tooltip: any

@@ -1,1 +1,1 @@
-export { default } from './positionsBubbleChart'
+export { default, PositionsBubbleChartProps } from './positionsBubbleChart'

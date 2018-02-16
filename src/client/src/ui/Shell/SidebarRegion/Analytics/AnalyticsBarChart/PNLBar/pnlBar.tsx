@@ -1,4 +1,4 @@
-import '../styles/AnalyticsStyles.scss'
+import '../../styles/AnalyticsStyles.scss'
 import * as numeral from 'numeral'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
