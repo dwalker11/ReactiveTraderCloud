@@ -2,7 +2,7 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators, Dispatch } from 'redux'
 import NotionalInput from './notionalInput'
-import { NotionalUpdate, onNotionalInputChange } from '../../../../../redux/ui_spotTile_notional'
+import { NotionalUpdate, onNotionalInputChange } from '../../../../../redux/notional'
 import { CurrencyPair } from '../../../../../types'
 
 interface NotionalContainerOwnProps {

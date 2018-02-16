@@ -2,7 +2,7 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators, Dispatch } from 'redux'
 import SidebarRegionView from './sidebarRegionView'
-import { toggleAnalytics } from '../../../redux/ui_sidebar'
+import { toggleAnalytics } from '../../../redux/sidebarRegion'
 
 interface SidebarRegionContainerOwnProps {}
 

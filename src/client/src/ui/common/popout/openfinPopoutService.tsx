@@ -3,6 +3,7 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import PopoutServiceBase from './popoutServiceBase'
 import OpenFinChrome from '../../OpenFinProvider/OpenFinChrome'
+
 const DockingManager = require('exports-loader?DockingManager!../../../../lib/dockingManager.js')
 
 const DOCKED_CLASS_NAME = 'docked'

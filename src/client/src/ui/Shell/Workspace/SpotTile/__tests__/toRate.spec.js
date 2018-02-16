@@ -1,4 +1,4 @@
-import { toRate } from '../../../redux/ui_spotTile/actions'
+import { toRate } from '../../../redux/spotTile/actions'
 
 describe('Rate Tests', () => {
 

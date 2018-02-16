@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import Shell from './shell'
-import { reconnect } from '../../redux/ui_shell/actions'
+import { reconnect } from '../../redux/shell'
 import { ConnectionStatus } from '../../types'
 
 function mapStateToProps({ connectionStatus }) {
