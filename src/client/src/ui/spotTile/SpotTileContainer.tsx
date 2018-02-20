@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { dismissNotification, displayCurrencyChart, executeTrade, spotRegionSettings, undockTile } from './actions'
 import SpotTile from './spotTile'
 import { createTradeRequest, DEFAULT_NOTIONAL, TradeRequest } from './spotTileUtils'
-import { addRegion, openWindow } from '../common/regions/regionsOperations'
+import { addRegion, openWindow } from '../common/regions'
 import { CurrencyPair, Direction, SpotPriceTick, SpotTileData } from '../../types'
 import { createDeepEqualSelector } from '../utils/mapToPropsSelectorFactory'
 

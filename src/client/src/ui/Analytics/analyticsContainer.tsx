@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import Analytics from './analytics'
 import { getPnlChartModel } from './model/pnlChartModel'
 import { getPositionsChartModel } from './model/positionsChartModel'
-import { addRegion, openWindow, regionsSettings } from '../common/regions/regionsOperations'
+import { addRegion, openWindow, regionsSettings } from '../common/regions'
 import Environment from '../../system/environment'
 import { CurrencyPair } from '../../types'
 
