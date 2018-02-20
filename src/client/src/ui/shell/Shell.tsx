@@ -10,7 +10,7 @@ import FooterContainer from '../Footer'
 import { Modal } from '../modal'
 import SidebarRegionContainer from '../SidebarRegion'
 import TradeNotificationContainer from '../TradeNotification'
-import { WorkspaceContainer } from '../workspace/'
+import WorkspaceContainer from '../Workspace'
 
 export interface ShellProps {
   sessionExpired: boolean
