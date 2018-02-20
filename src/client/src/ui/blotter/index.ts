@@ -1,5 +1,5 @@
+export { default } from './blotterContainer'
 export { default as Blotter } from './blotter'
-export { default as BlotterContainer } from './blotterContainer'
 export { default as DateCell } from './DateCell'
 export { default as blotterEpic } from './epics'
 export { default as blotterReducer } from './reducer'
