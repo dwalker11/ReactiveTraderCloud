@@ -5,7 +5,7 @@ import * as _ from 'lodash'
 import { connect } from 'react-redux'
 import { blotterRegionsSettings } from './reducer'
 import { openWindow, addRegion } from '../common/regions/regionsOperations'
-import Blotter from './Blotter'
+import Blotter from './blotter'
 import { CurrencyPair } from '../../types'
 import Environment from '../../system/environment';
 

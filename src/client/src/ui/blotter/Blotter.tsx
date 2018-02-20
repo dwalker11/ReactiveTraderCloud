@@ -5,7 +5,7 @@ import 'fixed-data-table/dist/fixed-data-table.css'
 
 import { CurrencyPair, Trade, TradeStatus } from '../../types'
 import { DateCell } from './'
-import { BaseCell, getCellClassName } from './DefaultCell'
+import { BaseCell, getCellClassName } from './DefaultCell/defaultCell'
 import { timeFormat } from 'd3-time-format'
 import * as numeral from 'numeral'
 
