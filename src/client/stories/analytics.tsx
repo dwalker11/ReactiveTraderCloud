@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react'
 
 import { default as analyticsProps, pnlChartModel, positionsChartModel } from './analytics/analyticsProps'
 import { Analytics, PositionsBubbleChart, AnalyticsBarChart } from '../src/ui/analytics'
-import PNLChart from '../src/ui/analytics/PNLChart'
+import PNLChart from '../src/ui/analytics/PNLChart/pnlChart'
 
 storiesOf('Analytics', module)
   .add('Full panel', () =>

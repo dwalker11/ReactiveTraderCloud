@@ -2,7 +2,7 @@ import * as _ from 'lodash'
 import { time } from 'd3'
 import * as numeral from 'numeral'
 
-import { PnlChartModelOptions } from '../PNLChart'
+import { PnlChartModelOptions } from '../PNLChart/pnlChart'
 
 export interface PricePoint {
   x: any

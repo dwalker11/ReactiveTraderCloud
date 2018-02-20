@@ -1,7 +1,7 @@
 import './SidebarRegionViewStyles.scss'
 import * as classnames from 'classnames'
 import * as React from 'react'
-import { AnalyticsContainer } from '../analytics'
+import AnalyticsContainer from '../Analytics'
 
 interface SidebarRegionViewProps {
   displayAnalytics: boolean
