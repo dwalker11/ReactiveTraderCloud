@@ -1,5 +1,5 @@
 import * as React from 'react'
-import PriceMovementIndicator from '../PriceMovementIndicator'
+import PriceMovementIndicator from '../PriceControlsView/PriceMovementIndicator/priceMovementIndicator'
 import ShallowRenderer from 'react-test-renderer/shallow'
 import { mount } from 'enzyme'
 

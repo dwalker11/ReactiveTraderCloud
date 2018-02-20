@@ -1,24 +1,16 @@
+import * as _ from 'lodash'
+import * as PropTypes from 'prop-types'
 import * as React from 'react'
 import { connect } from 'react-redux'
-import * as PropTypes from 'prop-types'
-import { addRegion, openWindow } from '../common/regions/regionsOperations'
-import SpotTile from './SpotTile'
-import {
-  dismissNotification,
-  displayCurrencyChart,
-  executeTrade,
-  spotRegionSettings,
-  undockTile,
-} from './actions'
-import { CurrencyPair, Direction } from '../../types/'
-import { createDeepEqualSelector } from '../utils/mapToPropsSelectorFactory'
-import { SpotPriceTick } from '../../types/spotPriceTick'
+import { dismissNotification, displayCurrencyChart, executeTrade, spotRegionSettings, undockTile } from './actions'
+import SpotTile from './spotTile'
 import { createTradeRequest, DEFAULT_NOTIONAL, TradeRequest } from './spotTileUtils'
-import { SpotTileData } from '../../types/spotTileData'
-import * as _ from 'lodash'
+import { addRegion, openWindow } from '../common/regions/regionsOperations'
+import { CurrencyPair, Direction, SpotPriceTick, SpotTileData } from '../../types'
+import { createDeepEqualSelector } from '../utils/mapToPropsSelectorFactory'
 
-const buildSpotTileDataObject = (tileData, spotTick:SpotPriceTick, currencyPair:CurrencyPair) => {
-  const tileDataObject:any = { ...tileData, ...spotTick, ...currencyPair }
+const buildSpotTileDataObject = (tileData, spotTick: SpotPriceTick, currencyPair: CurrencyPair) => {
+  const tileDataObject: any = { ...tileData, ...spotTick, ...currencyPair }
   return tileDataObject
 }
 
@@ -32,10 +24,7 @@ const makeGetSpotTileData = () =>
   )
 
 const makeGetCurrencyPair = () =>
-  createDeepEqualSelector(
-    (state: any, props) => state.currencyPairs[props.id],
-    currencyPairs => currencyPairs
-  )
+  createDeepEqualSelector((state: any, props) => state.currencyPairs[props.id], currencyPairs => currencyPairs)
 
 interface SpotTileContainerOwnProps {
   id: string
@@ -51,7 +40,7 @@ interface SpotTileContainerStateProps {
 }
 
 interface SpotTileContainerDispatchProps {
-  executeTrade: (request:any) => void
+  executeTrade: (request: any) => void
   onComponentMount: (id: string) => void
   onPopoutClick: (region: any, openFin: any) => any
   undockTile: (openFin: any, title: string) => any
@@ -62,7 +51,6 @@ interface SpotTileContainerDispatchProps {
 type SpotTileContainerProps = SpotTileContainerOwnProps & SpotTileContainerStateProps & SpotTileContainerDispatchProps
 
 class SpotTileContainer extends React.Component<SpotTileContainerProps, any> {
-
   static contextTypes = {
     openFin: PropTypes.object
   }
@@ -91,19 +79,15 @@ class SpotTileContainer extends React.Component<SpotTileContainerProps, any> {
       onNotificationDismissedClick: this.props.onNotificationDismissedClick(this.props.id),
       displayCurrencyChart: this.props.displayCurrencyChart(openFin, this.props.id)
     }
-    return (
-      <SpotTile
-        {...tileProps}
-      />
-    )
+    return <SpotTile {...tileProps} />
   }
 
-  private executeTrade = (direction:Direction) => {
+  private executeTrade = (direction: Direction) => {
     const { executionConnected, spotTilesData } = this.props
     if (!executionConnected || spotTilesData.isTradeExecutionInFlight) return
 
     const rate = direction === Direction.Buy ? spotTilesData.ask : spotTilesData.bid
-    const tradeRequestObj:TradeRequest = {
+    const tradeRequestObj: TradeRequest = {
       direction,
       currencyBase: this.props.currencyPair.base,
       symbol: this.props.currencyPair.symbol,
@@ -115,12 +99,12 @@ class SpotTileContainer extends React.Component<SpotTileContainerProps, any> {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
-    executeTrade: (tradeRequestObj:TradeRequest) => {
+    executeTrade: (tradeRequestObj: TradeRequest) => {
       dispatch(executeTrade(tradeRequestObj))
     },
-    onComponentMount: (id) => {
+    onComponentMount: id => {
       dispatch(addRegion(spotTileRegion(id)))
     },
     onPopoutClick: (id, openFin) => {
@@ -138,11 +122,11 @@ const mapDispatchToProps = (dispatch) => {
         dispatch(displayCurrencyChart({ openFin, symbol }))
       }
     },
-    onNotificationDismissedClick: (symbol) => {
+    onNotificationDismissedClick: symbol => {
       return () => {
         dispatch(dismissNotification({ symbol }))
       }
-    },
+    }
   }
 }
 
@@ -151,8 +135,10 @@ const makeMapStateToProps = () => {
   const getSpotTileData = makeGetSpotTileData()
   const mapStateToProps = (state, props) => {
     const { compositeStatusService, displayAnalytics, notionals } = state
-    const executionConnected = compositeStatusService && compositeStatusService.execution && compositeStatusService.execution.isConnected
-    const isConnected = compositeStatusService && compositeStatusService.analytics && compositeStatusService.analytics.isConnected
+    const executionConnected =
+      compositeStatusService && compositeStatusService.execution && compositeStatusService.execution.isConnected
+    const isConnected =
+      compositeStatusService && compositeStatusService.analytics && compositeStatusService.analytics.isConnected
     return {
       isConnected,
       executionConnected,
@@ -167,11 +153,11 @@ const makeMapStateToProps = () => {
 }
 
 const ConnectedSpotTileContainer = connect(makeMapStateToProps, mapDispatchToProps)(SpotTileContainer)
-const spotTileRegion = (id) => ({
+const spotTileRegion = id => ({
   id,
   isTearedOff: false,
-  container: connect((state) => ({ id }))(ConnectedSpotTileContainer),
-  settings: spotRegionSettings(id),
+  container: connect(state => ({ id }))(ConnectedSpotTileContainer),
+  settings: spotRegionSettings(id)
 })
 
 export default ConnectedSpotTileContainer

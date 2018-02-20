@@ -13,8 +13,8 @@ import {
   getSpotTileProps,
   getTradeNotificationProps,
 } from './spotTile/'
-import SpotTile, { NotionalInput, PriceButton, PriceMovementIndicator, TradeNotification } from '../src/ui/spotTile'
-import '../src/ui/spotTile/SpotTileStyles.scss'
+import SpotTile, { NotionalInput, PriceButton, PriceMovementIndicator, TradeNotification } from '../src/ui/SpotTile'
+import '../src/ui/SpotTile/SpotTileStyles.scss'
 
 const getButtons = (withContainerClass = true) =>
   <div className={withContainerClass ? 'spot-tile' : ''}>
