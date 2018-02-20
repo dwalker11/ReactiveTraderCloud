@@ -7,9 +7,9 @@ import { analyticsReducer } from './ui/Analytics'
 import { blotterReducer } from './ui/Blotter'
 import { regionsReducer } from './ui/common/regions/regionsOperations'
 import { footerReducer } from './ui/Footer'
+import { notionalsReducer } from './ui/Notional'
 import { sidebarRegionReducer } from './ui/SidebarRegion'
 import { spotTileDataReducer } from './ui/spotTile/index'
-import notionalsReducer from './ui/spotTile/notional/NotionalOperations'
 
 const rootReducer = combineReducers({
   blotterService: blotterReducer,

@@ -1,6 +1,6 @@
 import * as React from 'react'
 import * as numeral from 'numeral'
-import { utils } from '../../../system'
+import { utils } from '../../system/index'
 import * as classnames from 'classnames'
 import './NotionalInputStyles.scss'
 import { CurrencyPair }  from '../../../types'
