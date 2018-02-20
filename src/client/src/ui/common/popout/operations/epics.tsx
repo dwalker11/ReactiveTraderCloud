@@ -2,9 +2,9 @@ import * as React from 'react'
 import { Provider } from 'react-redux'
 import { combineEpics } from 'redux-observable'
 import { popoutClosed, popoutOpened } from './actions'
-import { ACTION_TYPES as REGIONS_ACTIONS } from '../regions/actions'
-import { ACTION_TYPES as TILE_ACTIONS, tileUndocked } from '../spotTile/actions'
-import { getPopoutService } from '../../ui/common/popout/index'
+import { ACTION_TYPES as REGIONS_ACTIONS } from '../../regions/operations/actions'
+import { ACTION_TYPES as TILE_ACTIONS, tileUndocked } from '../../../Shell/Workspace/SpotTile/operations/actions'
+import { getPopoutService } from '../index'
 
 declare const window: any
 

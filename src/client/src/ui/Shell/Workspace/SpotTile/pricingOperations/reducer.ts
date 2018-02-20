@@ -1,8 +1,8 @@
 import * as _ from 'lodash'
 import * as keyBy from 'lodash.keyby'
 import { ACTION_TYPES } from './actions'
-import { buildNotification } from '../utils'
-import { PriceMovementTypes, SpotPriceTick } from '../../types'
+import { buildNotification } from '../../../../utils/index'
+import { PriceMovementTypes, SpotPriceTick } from '../../../../../types/index'
 
 interface PricingOperationsReducerState {
   [symbol: string]: SpotPriceTick

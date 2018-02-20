@@ -83,7 +83,7 @@ class NotionalInput extends React.Component<NotionalInputProps, {}> {
       notional = 0
     }
     if (!isNaN(notional)) {
-      // send temp notional back to parent
+      // send temp operations back to parent
       this.props.onNotionalInputChange(notional)
 
       // user may be trying to enter decimals. restore BACK into input

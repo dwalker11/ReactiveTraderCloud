@@ -2,8 +2,8 @@ import * as React from 'react'
 import { storiesOf } from '@storybook/react'
 
 import { default as analyticsProps, pnlChartModel, positionsChartModel } from './analytics/analyticsProps'
-import { Analytics, PositionsBubbleChart, AnalyticsBarChart } from '../src/ui/analytics'
-import PNLChart from '../src/ui/analytics/PNLChart'
+import { Analytics, PositionsBubbleChart, AnalyticsBarChart } from '../src/ui/operations'
+import PNLChart from '../src/ui/operations/PNLChart'
 
 storiesOf('Analytics', module)
   .add('Full panel', () =>

@@ -1,5 +1,5 @@
 import { createAction } from 'redux-actions'
-import { regionsSettings } from '../regions'
+import { regionsSettings } from '../../../../common/regions/operations/index'
 
 export enum ACTION_TYPES {
   EXECUTE_TRADE = '@ReactiveTraderCloud/EXECUTE_TRADE',

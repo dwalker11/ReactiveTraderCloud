@@ -1,6 +1,6 @@
 import { timeFormat } from 'd3-time-format'
 import * as numeral from 'numeral'
-import { Direction, NotificationType, Trade } from '../../types'
+import { Direction, NotificationType, Trade } from '../../types/index'
 
 export function buildNotification(trade: Trade = null, error) {
   if (error || !trade) {

@@ -24,7 +24,7 @@ export default function analyticsService(
     getAnalyticsStream(analyticsRequest) {
       Guard.isDefined(analyticsRequest, 'analyticsRequest required')
       return Observable.create(o => {
-        log.debug('Subscribing to analytics stream')
+        log.debug('Subscribing to operations stream')
 
         return serviceClient
           .createStreamOperation('getAnalytics', analyticsRequest)

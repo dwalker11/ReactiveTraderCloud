@@ -1,7 +1,7 @@
 import * as _ from 'lodash'
 import { createCompositeStatusServiceAction } from './actions'
-import { ACTION_TYPES as REF_ACTION_TYPES } from '../referenceService'
-import { ServiceInstanceStatus, ServiceStatus } from '../../types'
+import { ACTION_TYPES as REF_ACTION_TYPES } from '../referenceServiceOperations/index'
+import { ServiceInstanceStatus, ServiceStatus } from '../types/index'
 
 const getServiceStatus = service => {
   return _.mapValues(service.services, (service: ServiceStatus) => {

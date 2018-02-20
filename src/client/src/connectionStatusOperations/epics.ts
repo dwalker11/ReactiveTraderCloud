@@ -1,7 +1,7 @@
 import { combineEpics } from 'redux-observable'
 import { ACTION_TYPES, createConnectionStatusUpdateAction } from './actions'
 import { Connections } from './reducer'
-import { ConnectionStatus } from '../../types'
+import { ConnectionStatus } from '../types/index'
 
 const connectionStatusToState = compositeStatusService$ => (connectionStatus: ConnectionStatus): Connections => {
   return {

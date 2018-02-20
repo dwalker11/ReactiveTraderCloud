@@ -1,10 +1,10 @@
 import { Observable } from 'rxjs/Rx'
-import { Direction } from '../../types/index'
-import { ACTION_TYPES as REF_ACTION_TYPES } from '../referenceService/actions'
-import { ACTION_TYPES as PRICING_ACTION_TYPES } from '../pricingService/actions'
+import { Direction } from '../../../../../types/index'
+import { ACTION_TYPES as REF_ACTION_TYPES } from '../../../../../referenceServiceOperations/actions'
+import { ACTION_TYPES as PRICING_ACTION_TYPES } from '../pricingOperations/actions'
 import { ACTION_TYPES as SPOT_TILE_ACTION_TYPES } from './actions';
 import { combineEpics } from 'redux-observable'
-import { SpotPrice } from '../../types/spotPrice'
+import { SpotPrice } from '../../../../../types/spotPrice'
 import * as _ from 'lodash'
 import { currencyChartOpened, dismissNotification, executeTrade, tradeExecuted, updateTiles } from './actions';
 

@@ -12,7 +12,6 @@ const log = logger.create('OpenFin')
 const REQUEST_LIMIT_CHECK_TOPIC = 'request-limit-check'
 
 export default class OpenFin {
-
   tradeClickedSubject
   limitCheckSubscriber: string
   limitCheckId
@@ -39,15 +38,12 @@ export default class OpenFin {
   }
 
   maximize(currentWindow = this.currentWindow) {
-    currentWindow.getState((state) => {
+    currentWindow.getState(state => {
       switch (state) {
         case 'maximized':
         case 'restored':
         case 'minimized':
-          currentWindow.restore(() => currentWindow.bringToFront(
-            () => log.info('Window brought to front.'),
-            err => log.error(err),
-          ), err => log.error(err))
+          currentWindow.restore(() => currentWindow.bringToFront(() => log.info('Window brought to front.'), err => log.error(err)), err => log.error(err))
           break
         default:
           currentWindow.maximize(() => log.info('Window maximized with success.'), err => log.error('Failed to maximize window.', err))
@@ -56,16 +52,11 @@ export default class OpenFin {
   }
 
   bringToFront(currentWindow = this.currentWindow) {
-    currentWindow.getState((state) => {
+    currentWindow.getState(state => {
       if (state === 'minimized') {
-        currentWindow.restore(() => currentWindow.bringToFront(
-          () => log.info('Window brought to front.'),
-          err => log.error(err),
-        ), err => log.error(err))
+        currentWindow.restore(() => currentWindow.bringToFront(() => log.info('Window brought to front.'), err => log.error(err)), err => log.error(err))
       } else {
-        currentWindow.bringToFront(
-          () => log.info('Window brought to front.'),
-          err => log.error(err))
+        currentWindow.bringToFront(() => log.info('Window brought to front.'), err => log.error(err))
       }
     })
   }
@@ -86,7 +77,7 @@ export default class OpenFin {
   }
 
   checkLimit(executablePrice, notional, tradedCurrencyPair) {
-    return Observable.create((observer) => {
+    return Observable.create(observer => {
       const disposables = new Subscription()
       if (this.limitCheckSubscriber === null) {
         log.debug('client side limit check not up, will delegate to to server')
@@ -95,7 +86,7 @@ export default class OpenFin {
       } else {
         log.debug(`checking if limit is ok with ${this.limitCheckSubscriber}`)
         const topic = `limit-check-response (${this.limitCheckId++})`
-        const limitCheckResponse = (msg) => {
+        const limitCheckResponse = msg => {
           log.debug(`${this.limitCheckSubscriber} limit check response was ${msg}`)
           observer.next(msg.result)
           observer.compconste()
@@ -108,12 +99,14 @@ export default class OpenFin {
           notional,
           id: this.limitCheckId,
           responseTopic: topic,
-          rate: executablePrice,
+          rate: executablePrice
         })
 
-        disposables.add(new Subscription(() => {
-          fin.desktop.InterApplicationBus.unsubscribe(this.limitCheckSubscriber, topic, limitCheckResponse)
-        }))
+        disposables.add(
+          new Subscription(() => {
+            fin.desktop.InterApplicationBus.unsubscribe(this.limitCheckSubscriber, topic, limitCheckResponse)
+          })
+        )
       }
       return disposables
     })
@@ -131,10 +124,10 @@ export default class OpenFin {
   displayCurrencyChart(symbol) {
     return new Promise((resolve, reject) => {
       const chartIqAppId = 'ChartIQ'
-      fin.desktop.System.getAllApplications((apps) => {
-        const chartIqApp = _.find(apps, ((app: any) => {
+      fin.desktop.System.getAllApplications(apps => {
+        const chartIqApp = _.find(apps, (app: any) => {
           return app.isRunning && app.uuid === chartIqAppId
-        }))
+        })
         if (chartIqApp) {
           resolve(this.refreshCurrencyChart(symbol))
         } else {
@@ -174,7 +167,7 @@ export default class OpenFin {
    */
   refreshCurrencyChart(symbol) {
     const interval = 5
-    fin.desktop.InterApplicationBus.publish('chartiq:main:change_symbol', {symbol, interval})
+    fin.desktop.InterApplicationBus.publish('chartiq:main:change_symbol', { symbol, interval })
     return Promise.resolve(symbol)
   }
 
@@ -188,21 +181,25 @@ export default class OpenFin {
       const interval = 5
       const chartIqAppId = 'ChartIQ'
       const url = `http://adaptiveconsulting.github.io/ReactiveTraderCloud/chartiq/chartiq-shim.html?symbol=${symbol}&period=${interval}`
-      const name = `chartiq_${(new Date()).getTime()}`
+      const name = `chartiq_${new Date().getTime()}`
       const applicationIcon = 'http://adaptiveconsulting.github.io/chartiq/icon.png'
-      const app = new fin.desktop.Application({
-        url,
-        name,
-        applicationIcon,
-        uuid: chartIqAppId,
-        mainWindowOptions: {
-          autoShow: false,
+      const app = new fin.desktop.Application(
+        {
+          url,
+          name,
+          applicationIcon,
+          uuid: chartIqAppId,
+          mainWindowOptions: {
+            autoShow: false
+          }
         },
-      }, () => app.run(() => setTimeout(() => resolve(symbol), 1000), err => reject(err)), err => reject(err))
+        () => app.run(() => setTimeout(() => resolve(symbol), 1000), err => reject(err)),
+        err => reject(err)
+      )
     })
   }
 
-  openTradeNotification(trade:Trade, currencyPair: CurrencyPair) {
+  openTradeNotification(trade: Trade, currencyPair: CurrencyPair) {
     if (!this.isRunningInOpenFin) return
 
     const tradeNotification = formatTradeNotification(trade, currencyPair)
@@ -214,9 +211,9 @@ export default class OpenFin {
         this.bringToFront()
         // highlight trade row
         // this._router.publishEvent(WellKnownModelIds.blotterModelId, 'highlightTradeRow', { trade })
-      },
+      }
     })
-    fin.desktop.InterApplicationBus.publish('blotter-new-item', tradeNotification)
+    fin.desktop.InterApplicationBus.publish('operations-new-item', tradeNotification)
   }
 
   publishCurrentPositions(ccyPairPositions) {
@@ -225,17 +222,15 @@ export default class OpenFin {
     fin.desktop.InterApplicationBus.publish('position-update', serialisePositions)
   }
 
-
   publishPrice(price) {
     if (!this.isRunningInOpenFin) return
     fin.desktop.InterApplicationBus.publish('price-update', price)
   }
 
-  sendAllBlotterData(uuid, blotterData: Trade[], currencyPairs:CurrencyPair[]) {
-    const parsed = Object.keys(blotterData)
-      .map((x) => formatTradeNotification(blotterData[x], currencyPairs[blotterData[x].symbol]))
+  sendAllBlotterData(uuid, blotterData: Trade[], currencyPairs: CurrencyPair[]) {
+    const parsed = Object.keys(blotterData).map(x => formatTradeNotification(blotterData[x], currencyPairs[blotterData[x].symbol]))
 
-    fin.desktop.InterApplicationBus.send(uuid, 'blotter-data', parsed)
+    fin.desktop.InterApplicationBus.send(uuid, 'operations-data', parsed)
   }
 
   sendPositionClosedNotification(uuid, correlationId) {

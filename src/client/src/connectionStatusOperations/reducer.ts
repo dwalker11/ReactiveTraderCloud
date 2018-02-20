@@ -1,6 +1,6 @@
 import { handleActions } from 'redux-actions'
 import { ACTION_TYPES } from './actions'
-import { ConnectionStatus } from '../../types'
+import { ConnectionStatus } from '../types/index'
 
 interface State {
   connection: ConnectionStatus

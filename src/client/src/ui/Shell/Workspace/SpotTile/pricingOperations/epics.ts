@@ -1,8 +1,8 @@
 import { combineEpics } from 'redux-observable'
 import { Observable } from 'rxjs/Rx'
 import { createPricingServiceStatusUpdateAction, createSpotPricesUpdateAction, createStalePriceAction } from './actions'
-import { ACTION_TYPES as REF_ACTION_TYPES } from '../referenceService/actions'
-import { SpotPriceTick } from '../../types'
+import { ACTION_TYPES as REF_ACTION_TYPES } from '../../../../../referenceServiceOperations/actions'
+import { SpotPriceTick } from '../../../../../types/index'
 
 const MS_FOR_LAST_PRICE_TO_BECOME_STALE = 6000
 

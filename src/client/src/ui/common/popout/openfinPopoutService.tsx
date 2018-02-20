@@ -2,7 +2,7 @@ import * as _ from 'lodash'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import PopoutServiceBase from './popoutServiceBase'
-import OpenFinChrome from '../../OpenFinProvider/OpenFinChrome'
+import OpenFinChrome from '../../OpenFinProvider/OpenFinChrome/index'
 
 const DockingManager = require('exports-loader?DockingManager!../../../../lib/dockingManager.js')
 
@@ -130,7 +130,7 @@ export default class OpenfinPopoutService extends PopoutServiceBase {
   }
 
   unregisterWindow({ name }) {
-    // ensure other popouts are notified in case the window is docked
+    // ensure other operations are notified in case the window is docked
     this.undockPopout(name)
     delete this.popouts[name]
   }

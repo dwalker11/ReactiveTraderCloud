@@ -10,7 +10,7 @@ import Modal from './Modal'
 import SidebarRegionContainer from './SidebarRegion'
 import TradeNotificationContainer from './TradeNotification'
 import WorkspaceContainer from './Workspace'
-import RegionWrapper from '../regions/RegionWrapper'
+import RegionWrapper from '../common/regions/RegionWrapper'
 
 export interface ShellProps {
   sessionExpired: boolean
