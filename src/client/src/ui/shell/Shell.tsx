@@ -8,7 +8,7 @@ import { BlotterContainer } from '../Blotter'
 import RegionWrapper from '../common/regions/RegionWrapper'
 import FooterContainer from '../Footer'
 import { Modal } from '../modal'
-import SidebarRegionContainer from '../sidebar/SidebarRegionContainer'
+import SidebarRegionContainer from '../SidebarRegion'
 import TradeNotificationContainer from '../TradeNotification'
 import { WorkspaceContainer } from '../workspace/'
 
