@@ -1,6 +1,6 @@
 import { combineEpics } from 'redux-observable'
 import { createAction, handleActions } from 'redux-actions'
-import { ConnectionStatus } from './types/'
+import { ConnectionStatus } from './types'
 
 export enum ACTION_TYPES {
   CONNECTION_STATUS_UPDATE = '@ReactiveTraderCloud/CONNECTION_STATUS_UPDATE',
