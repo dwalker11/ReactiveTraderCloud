@@ -2,12 +2,12 @@ import * as _ from 'lodash'
 import * as PropTypes from 'prop-types'
 import * as React from 'react'
 import { connect } from 'react-redux'
+import { CurrencyPair, Direction, SpotPriceTick, SpotTileData } from './'
 import { dismissNotification, displayCurrencyChart, executeTrade, spotRegionSettings, undockTile } from './actions'
 import SpotTile from './spotTile'
 import { createTradeRequest, DEFAULT_NOTIONAL, TradeRequest } from './spotTileUtils'
 import { addRegion, openWindow } from '../common/regions/regionsOperations'
 import { createDeepEqualSelector } from '../utils/mapToPropsSelectorFactory'
-import { CurrencyPair, Direction, SpotPriceTick, SpotTileData } from '../../types'
 
 const buildSpotTileDataObject = (tileData, spotTick: SpotPriceTick, currencyPair: CurrencyPair) => {
   const tileDataObject: any = { ...tileData, ...spotTick, ...currencyPair }
@@ -157,13 +157,13 @@ const makeMapStateToProps = () => {
     const isConnected =
       compositeStatusService && compositeStatusService.analytics && compositeStatusService.analytics.isConnected
     return {
+      notionals,
       isConnected,
       executionConnected,
       pricingConnected,
       displayAnalytics,
       currencyPair: getCurrencyPair(state, props),
-      spotTilesData: getSpotTileData(state, props),
-      notionals
+      spotTilesData: getSpotTileData(state, props)
     }
   }
 

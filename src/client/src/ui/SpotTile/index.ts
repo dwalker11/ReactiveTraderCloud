@@ -8,3 +8,16 @@ export { default as NotionalInput } from './notional/NotionalInput'
 export { pricingServiceEpic, pricingServiceReducer } from './pricingOperations'
 export { default as spotTileDataReducer } from './reducer'
 export { default as spotTileEpicsCreator } from './epics'
+
+export {
+  CurrencyPair,
+  Direction,
+  Notification,
+  NotificationType,
+  PriceMovementTypes,
+  Rate,
+  SpotPrice,
+  SpotPriceTick,
+  SpotTileData,
+  TradeStatus
+} from '../../types'

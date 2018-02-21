@@ -3,7 +3,7 @@ import * as classnames from 'classnames'
 import { timeFormat } from 'd3-time-format'
 import * as numeral from 'numeral'
 import * as React from 'react'
-import { CurrencyPair, Notification, TradeStatus } from '../../../types'
+import { CurrencyPair, Notification, TradeStatus } from '../'
 
 interface TradeNotificationProps {
   currencyPair: CurrencyPair
