@@ -1,7 +1,7 @@
 import './PriceMovementIndicatorStyles.scss'
 import * as classnames from 'classnames'
 import * as React from 'react'
-import { PriceMovementTypes } from '../../../../types'
+import { PriceMovementTypes } from '../../'
 
 export interface PriceMovementIndicatorProps {
   priceMovementType: any

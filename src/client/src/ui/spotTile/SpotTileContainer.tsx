@@ -2,11 +2,11 @@ import * as _ from 'lodash'
 import * as PropTypes from 'prop-types'
 import * as React from 'react'
 import { connect } from 'react-redux'
+import { CurrencyPair, Direction, SpotPriceTick, SpotTileData } from './'
 import { dismissNotification, displayCurrencyChart, executeTrade, spotRegionSettings, undockTile } from './actions'
 import SpotTile from './spotTile'
 import { createTradeRequest, DEFAULT_NOTIONAL, TradeRequest } from './spotTileUtils'
 import { addRegion, openWindow } from '../common/regions'
-import { CurrencyPair, Direction, SpotPriceTick, SpotTileData } from '../../types'
 import { createDeepEqualSelector } from '../utils/mapToPropsSelectorFactory'
 
 const buildSpotTileDataObject = (tileData, spotTick: SpotPriceTick, currencyPair: CurrencyPair) => {

@@ -1,7 +1,7 @@
 import './TradeNotificationStyles.scss'
 import * as classnames from 'classnames'
 import * as React from 'react'
-import { CurrencyPair, Notification, TradeStatus } from '../../../types'
+import { CurrencyPair, Notification, TradeStatus } from '../'
 
 interface TradeNotificationProps {
   currencyPair: CurrencyPair

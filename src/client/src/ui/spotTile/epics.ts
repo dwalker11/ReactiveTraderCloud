@@ -1,6 +1,7 @@
 import * as _ from 'lodash'
 import { combineEpics } from 'redux-observable'
 import { Observable } from 'rxjs/Rx'
+import { Direction, SpotPrice } from './'
 import {
   ACTION_TYPES as SPOT_TILE_ACTION_TYPES,
   currencyChartOpened,
@@ -11,7 +12,6 @@ import {
 } from './actions'
 import { ACTION_TYPES as PRICING_ACTION_TYPES } from './pricingOperations'
 import { ACTION_TYPES as REF_ACTION_TYPES } from '../../referenceDataOperations'
-import { Direction, SpotPrice } from '../../types'
 
 const DISMISS_NOTIFICATION_AFTER_X_IN_MS = 6000
 

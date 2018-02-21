@@ -1,7 +1,7 @@
 import './PriceButtonStyles.scss'
 import * as classnames from 'classnames'
 import * as React from 'react'
-import { CurrencyPair, Direction, Rate } from '../../../../types'
+import { CurrencyPair, Direction, Rate } from '../../'
 
 interface PriceButtonProps {
   className: string

@@ -3,11 +3,12 @@ import * as classnames from 'classnames'
 import * as _ from 'lodash'
 import * as moment from 'moment'
 import * as React from 'react'
-import { TradeNotification, SpotTileControls } from './'
-import PriceControlsView from './PriceControlsView/priceControlsView'
+import { CurrencyPair, Notification, NotificationType, SpotTileData } from './'
+import PriceControlsView from './PriceControlsView'
+import SpotTileControls from './SpotTileControls'
 import { SPOT_DATE_FORMAT } from './spotTileUtils'
 import NotionalContainer from '../Notional'
-import { CurrencyPair, Notification, NotificationType, SpotTileData } from '../../types'
+import TradeNotification from '../TradeNotification'
 
 export interface SpotTileProps {
   currencyPair: CurrencyPair
