@@ -1,5 +1,4 @@
-import { Rate } from '../../types/rate'
-import { Direction } from '../../types'
+import { Direction, Rate } from '../../types'
 
 export const DEFAULT_NOTIONAL = 1000000
 
@@ -17,7 +16,7 @@ export function toRate(rawRate: number = 0, ratePrecision: number = 0, pipPrecis
     pipPrecision,
     bigFigure: Number(wholeNumber + '.' + fractions.substring(0, pipPrecision - 2)),
     pips: Number(fractions.substring(pipPrecision - 2, pipPrecision)),
-    pipFraction: Number(fractions.substring(pipPrecision, pipPrecision + 1)),
+    pipFraction: Number(fractions.substring(pipPrecision, pipPrecision + 1))
   }
 }
 
@@ -26,7 +25,7 @@ export function getSpread(bid: number, ask: number, pipsPosition: number, ratePr
   const toFixedPrecision = spread.toFixed(ratePrecision - pipsPosition)
   return {
     value: Number(toFixedPrecision),
-    formattedValue: toFixedPrecision,
+    formattedValue: toFixedPrecision
   }
 }
 
@@ -44,6 +43,6 @@ export const createTradeRequest = (tradeRequestObj: TradeRequest) => {
     SpotRate: tradeRequestObj.rawSpotRate,
     Direction: tradeRequestObj.direction,
     Notional: tradeRequestObj.notional,
-    DealtCurrency: tradeRequestObj.currencyBase,
+    DealtCurrency: tradeRequestObj.currencyBase
   }
 }

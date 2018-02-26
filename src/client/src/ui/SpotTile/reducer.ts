@@ -6,14 +6,14 @@ const updateSpotTile = (state, symbol, value) => {
     ...state,
     [symbol]: {
       ...state[symbol],
-      ...value,
-    },
+      ...value
+    }
   }
 }
 
 export const spotTileDataReducer = (state: any = {}, action) => {
-
   const { type, payload } = action
+
   switch (type) {
     case ACTION_TYPES.DISPLAY_CURRENCY_CHART:
       return updateSpotTile(state, payload.symbol, { currencyChartIsOpening: true })
@@ -27,9 +27,10 @@ export const spotTileDataReducer = (state: any = {}, action) => {
     case ACTION_TYPES.TRADE_EXECUTED:
       const symbol = payload.trade.symbol
       return updateSpotTile(state, symbol, {
-        hasError: payload.hasError ,
+        hasError: payload.hasError,
         isTradeExecutionInFlight: false,
-        notification: buildNotification(payload.trade, payload.error)})
+        notification: buildNotification(payload.trade, payload.error)
+      })
 
     case ACTION_TYPES.DISMISS_NOTIFICATION:
       return updateSpotTile(state, payload.symbol, { notification: null })

@@ -2,17 +2,15 @@ import { createStore, applyMiddleware } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { createEpicMiddleware, combineEpics } from 'redux-observable'
 import { persistStore } from 'redux-persist'
-
 import rootReducer from './combineReducers'
 import { compositeStatusServiceEpic } from './compositeStatusServiceOperations'
 import { connectionStatusEpicsCreator } from './connectionStatusOperations'
-import { pricingServiceEpic } from './pricingOperations'
 import { referenceServiceEpic } from './referenceDataOperations'
 import { analyticsServiceEpic } from './ui/analytics'
 import { blotterEpic } from './ui/blotter/'
 import { popoutEpic } from './ui/common/popout/popoutEpic'
+import { pricingServiceEpic, spotTileEpicsCreator } from './ui/SpotTile'
 import { footerEpic } from './ui/footer/FooterOperations'
-import { spotTileEpicsCreator } from './ui/spotTile'
 
 const epicMiddleware = (
   referenceDataService,

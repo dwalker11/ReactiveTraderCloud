@@ -20,10 +20,10 @@ import {
   getSpotTileProps,
   getTradeNotification,
 } from './spotTile/'
-import SpotTile, { NotionalInput, PriceButton, PriceMovementIndicator, TradeNotification } from '../src/ui/spotTile'
-import '../src/ui/spotTile/SpotTileStyles.scss'
+import SpotTile, { NotionalInput, PriceButton, PriceMovementIndicator, TradeNotification } from '../src/ui/SpotTile'
+import '../src/ui/SpotTile/SpotTileStyles.scss'
 import { Direction } from '../src/types/direction'
-import { toRate } from '../src/ui/spotTile/spotTileUtils'
+import { toRate } from '../src/ui/SpotTile/spotTileUtils'
 import { getCurrencyPair } from './currencyPairs'
 
 const getButtons = (withContainerClass = true) => {

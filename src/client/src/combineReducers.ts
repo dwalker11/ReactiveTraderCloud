@@ -2,14 +2,13 @@ import { combineReducers } from 'redux'
 import compositeStatusServiceReducer from './compositeStatusServiceOperations'
 import connectionStatusReducer from './connectionStatusOperations'
 import { currencyPairReducer } from './currencyPairsOperations'
-import { pricingServiceReducer } from './pricingOperations'
 import { analyticsReducer } from './ui/analytics/index'
 import { blotterReducer } from './ui/blotter/index'
 import { regionsReducer } from './ui/common/regions/regionsOperations'
 import footerReducer from './ui/footer/FooterOperations'
 import sidebarRegionReducer from './ui/sidebar/SidebarRegionOperations'
-import { spotTileDataReducer } from './ui/spotTile/index'
-import notionalsReducer from './ui/spotTile/notional/NotionalOperations'
+import notionalsReducer from './ui/SpotTile/notional/NotionalOperations'
+import { pricingServiceReducer, spotTileDataReducer } from './ui/SpotTile'
 
 const rootReducer = combineReducers({
   blotterService: blotterReducer,

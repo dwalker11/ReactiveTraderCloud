@@ -3,7 +3,7 @@ import * as React from 'react'
 import './WorkspaceContainerStyles.scss'
 import { connect } from 'react-redux'
 import RegionWrapper from '../common/regions/RegionWrapper'
-import ConnectedSpotTileContainer from '../spotTile/SpotTileContainer'
+import ConnectedSpotTileContainer from '../SpotTile'
 import { createDeepEqualSelector } from '../utils/mapToPropsSelectorFactory'
 
 const getSpotTileKeys = createDeepEqualSelector(

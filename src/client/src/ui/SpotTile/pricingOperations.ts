@@ -3,9 +3,9 @@ import * as keyBy from 'lodash.keyby'
 import { createAction } from 'redux-actions'
 import { combineEpics } from 'redux-observable'
 import { Observable } from 'rxjs/Rx'
-import { ACTION_TYPES as REF_ACTION_TYPES } from './referenceDataOperations'
-import { PriceMovementTypes, SpotPriceTick } from './types'
-import { buildNotification } from './ui/notification/notificationUtils'
+import { buildNotification } from '../notification/notificationUtils'
+import { ACTION_TYPES as REF_ACTION_TYPES } from '../../referenceDataOperations'
+import { PriceMovementTypes, SpotPriceTick } from '../../types'
 
 export enum ACTION_TYPES {
   SPOT_PRICES_UPDATE = '@ReactiveTraderCloud/SPOT_PRICES_UPDATE',

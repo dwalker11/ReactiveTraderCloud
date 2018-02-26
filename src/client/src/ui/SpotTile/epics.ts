@@ -1,12 +1,17 @@
-import { Observable } from 'rxjs/Rx'
-import { Direction } from '../../types'
-import { ACTION_TYPES as REF_ACTION_TYPES } from '../../referenceDataOperations'
-import { ACTION_TYPES as PRICING_ACTION_TYPES } from '../../pricingOperations'
-import { ACTION_TYPES as SPOT_TILE_ACTION_TYPES } from './actions';
-import { combineEpics } from 'redux-observable'
-import { SpotPrice } from '../../types/spotPrice'
 import * as _ from 'lodash'
-import { currencyChartOpened, dismissNotification, executeTrade, tradeExecuted, updateTiles } from './actions';
+import { combineEpics } from 'redux-observable'
+import { Observable } from 'rxjs/Rx'
+import {
+  ACTION_TYPES as SPOT_TILE_ACTION_TYPES,
+  currencyChartOpened,
+  dismissNotification,
+  executeTrade,
+  tradeExecuted,
+  updateTiles
+} from './actions'
+import { ACTION_TYPES as PRICING_ACTION_TYPES } from './pricingOperations'
+import { ACTION_TYPES as REF_ACTION_TYPES } from '../../referenceDataOperations'
+import { Direction, SpotPrice } from '../../types'
 
 const DISMISS_NOTIFICATION_AFTER_X_IN_MS = 6000
 
@@ -26,32 +31,38 @@ const addCurrencyPairToSpotPrices = referenceDataService => (spotPrices: SpotPri
 
 export function spotTileEpicsCreator(executionService$, referenceDataService, openfin) {
   function executeTradeEpic(action$) {
-    return action$.ofType(SPOT_TILE_ACTION_TYPES.EXECUTE_TRADE)
-      .flatMap((action) => executionService$.executeTrade(action.payload), (request, result) => ({ request, result }))
+    return action$
+      .ofType(SPOT_TILE_ACTION_TYPES.EXECUTE_TRADE)
+      .flatMap(action => executionService$.executeTrade(action.payload), (request, result) => ({ request, result }))
       .map(x => tradeExecuted(x.result, x.request.meta))
   }
 
   function onPriceUpdateEpic(action$) {
-    return action$.ofType(PRICING_ACTION_TYPES.SPOT_PRICES_UPDATE)
+    return action$
+      .ofType(PRICING_ACTION_TYPES.SPOT_PRICES_UPDATE)
       .map(extractPayload)
       .map(addCurrencyPairToSpotPrices(referenceDataService))
       .map(updateTiles)
   }
 
   function displayCurrencyChart(action$) {
-    return action$.ofType(SPOT_TILE_ACTION_TYPES.DISPLAY_CURRENCY_CHART)
-      .flatMap((payload) => {
+    return action$
+      .ofType(SPOT_TILE_ACTION_TYPES.DISPLAY_CURRENCY_CHART)
+      .flatMap(payload => {
         return Observable.fromPromise(payload.payload.openFin.displayCurrencyChart(payload.payload.symbol))
       })
-      .map((symbol) => {
+      .map(symbol => {
         return currencyChartOpened(symbol)
       })
   }
 
   function onTradeExecuted(action$) {
-    return action$.ofType(SPOT_TILE_ACTION_TYPES.TRADE_EXECUTED)
+    return action$
+      .ofType(SPOT_TILE_ACTION_TYPES.TRADE_EXECUTED)
       .do(action => {
-        openfin.isRunningInOpenFin && action.meta && openfin.sendPositionClosedNotification(action.meta.uuid, action.meta.correlationId)
+        openfin.isRunningInOpenFin &&
+          action.meta &&
+          openfin.sendPositionClosedNotification(action.meta.uuid, action.meta.correlationId)
       })
       .delay(DISMISS_NOTIFICATION_AFTER_X_IN_MS)
       .map(action => ({ symbol: action.payload.trade.CurrencyPair || action.payload.trade.symbol }))
@@ -61,22 +72,20 @@ export function spotTileEpicsCreator(executionService$, referenceDataService, op
   function createTrade(msg, price) {
     const direction = msg.amount > 0 ? Direction.Sell : Direction.Buy
     const notional = Math.abs(msg.amount)
-
-    const spotRate = direction === Direction.Buy
-      ? price.ask
-      : price.bid
+    const spotRate = direction === Direction.Buy ? price.ask : price.bid
 
     return {
       CurrencyPair: price.symbol,
       SpotRate: spotRate,
       Direction: direction,
       Notional: notional,
-      DealtCurrency: price.currencyPair.base,
+      DealtCurrency: price.currencyPair.base
     }
   }
 
   function closePositionEpic(action$, store) {
-    return action$.ofType(REF_ACTION_TYPES.REFERENCE_SERVICE)
+    return action$
+      .ofType(REF_ACTION_TYPES.REFERENCE_SERVICE)
       .do(() => {
         openfin.addSubscription('close-position', (msg, uuid) => {
           const trade = createTrade(msg, store.getState().pricingService[msg.symbol])

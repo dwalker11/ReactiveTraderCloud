@@ -1,5 +1,5 @@
 import * as React from 'react'
-import SpotTile from '../SpotTile'
+import SpotTile from '../spotTile'
 import * as renderer from 'react-test-renderer'
 import ShallowRenderer from 'react-test-renderer/shallow'
 
