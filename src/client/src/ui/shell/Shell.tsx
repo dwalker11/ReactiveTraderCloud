@@ -11,7 +11,44 @@ import RegionWrapper from '../common/regions/RegionWrapper'
 import * as classnames from 'classnames'
 import TradeNotificationContainer from '../notification/TradeNotificationContainer'
 import * as PropTypes from 'prop-types'
+import styled from 'react-emotion'
 const SplitPane = require('react-split-pane')
+
+
+// TODO: Find a better location, ie. theme file
+const variables = {
+  'splash-logo-height': '400px',
+  'splash-logo-margin-top': '20vh'
+}
+
+const splashImg = {
+  'src': '../common/images/logo-transparent.png'
+}
+
+// TODO: Fix missing image
+const ShellSplash = styled('div')`
+  background: url('${props => splashImg.src}'), #1f2a36;
+  background-size: 400px ${props => variables['splash-logo-height']};
+  background-position: 50% ${props => variables['splash-logo-margin-top']};
+  height: 100vh;
+  width: 100vw;
+  background-repeat: no-repeat;
+  position: fixed;
+  z-index: 100;
+  animation: hideSplashScreen 1s ease-out 2s forwards;
+`
+
+const ShellSplashMessage = styled('span')`
+  text-align: center;
+  color: white;
+  position: absolute;
+  bottom: calc(100vh - ${props => variables['splash-logo-margin-top']} - ${props => variables['splash-logo-height']} - 50px);
+  left: 0;
+  right: 0;
+  width: 100px;
+  margin: auto;
+  font-size: 18px;
+`
 
 export interface ShellProps {
   sessionExpired: boolean
@@ -31,9 +68,9 @@ export default class Shell extends React.Component<ShellProps, {}> {
     const { sessionExpired, showSplitter } = this.props
     return (
       <div className={classnames({ shell__browser_wrapper: !this.context.openFin })}>
-        <div className="shell__splash">
-          <span className="shell__splash-message">{this.appVersion}<br/>Loading...</span>
-        </div>
+        <ShellSplash>
+          <ShellSplashMessage>{this.appVersion}<br/>Loading...</ShellSplashMessage>
+        </ShellSplash>
         <div className="shell__container">
           <Modal shouldShow={sessionExpired} title="Session expired">
             <div>
