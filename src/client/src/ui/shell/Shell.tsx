@@ -26,6 +26,8 @@ const splashImg = {
 }
 
 // TODO: Fix missing image
+// TODO: Import 'facepaint' to handle media breakpoints
+// TODO: Import 'keyframes' to handle splash animation
 const ShellSplash = styled('div')`
   background: url('${props => splashImg.src}'), #1f2a36;
   background-size: 400px ${props => variables['splash-logo-height']};
@@ -50,6 +52,30 @@ const ShellSplashMessage = styled('span')`
   font-size: 18px;
 `
 
+// TODO: Add missing variables
+const ShellContainer = styled('div')`
+  background-color: $shell-background-color;
+  display: flex;
+  flex-flow: row;
+  justify-content: flex-end;
+  height: calc(100% - #{$footer-height});
+  width: 100%;
+  & * {
+    box-sizing: border-box;
+  }
+`
+
+const ShellFooter = styled('div')`
+  height: $footer-height;
+`
+
+// TODO: Import 'cx' library to
+const ShellReconnectBtn = styled('button')`
+  min-width: 100px;
+  height: 28px;
+  margin: 20px 10px;
+`
+
 export interface ShellProps {
   sessionExpired: boolean
   showSplitter: boolean
@@ -64,6 +90,7 @@ export default class Shell extends React.Component<ShellProps, {}> {
   props: ShellProps
   appVersion: string = __VERSION__ // version from package.json exported in webpack.config.js
 
+  // TODO: Import the cx library to "class={'btn shell__button--reconnect'}" below
   render() {
     const { sessionExpired, showSplitter } = this.props
     return (
@@ -71,14 +98,12 @@ export default class Shell extends React.Component<ShellProps, {}> {
         <ShellSplash>
           <ShellSplashMessage>{this.appVersion}<br/>Loading...</ShellSplashMessage>
         </ShellSplash>
-        <div className="shell__container">
+        <ShellContainer>
           <Modal shouldShow={sessionExpired} title="Session expired">
             <div>
               <div>Your 15 minute session expired, you are now disconnected from the server.</div>
               <div>Click reconnect to start a new session.</div>
-              <button className="btn shell__button--reconnect"
-                      onClick={this.props.reconnect}>Reconnect
-              </button>
+              <ShellReconnectBtn onClick={this.props.reconnect}>Reconnect</ShellReconnectBtn>
             </div>
           </Modal>
 
@@ -88,11 +113,11 @@ export default class Shell extends React.Component<ShellProps, {}> {
           <RegionWrapper region="analytics">
             <SidebarRegionContainer/>
           </RegionWrapper>
-        </div>
-        <div className="shell__footer">
+        </ShellContainer>
+        <ShellFooter>
           <FooterContainer/>
           <TradeNotificationContainer/>
-        </div>
+        </ShellFooter>
       </div>
     )
   }
