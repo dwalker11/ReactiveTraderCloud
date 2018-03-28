@@ -8,15 +8,13 @@ import './ShellStyles.scss'
 import '../common/styles/_base.scss'
 import '../common/styles/_fonts.scss'
 import RegionWrapper from '../common/regions/RegionWrapper'
-import * as classnames from 'classnames'
 import TradeNotificationContainer from '../notification/TradeNotificationContainer'
 import * as PropTypes from 'prop-types'
 import styled, { css, cx, keyframes } from 'react-emotion'
 const SplitPane = require('react-split-pane')
 
 
-// TODO: Import 'facepaint' to handle media breakpoints
-// TODO: Find a better location, ie. theme file
+// TODO: Find a better location, ie. A theme file, withProps
 const variables = {
   'shell-background-color': '#1d2027',
   'footer-height': '40px',
@@ -24,7 +22,6 @@ const variables = {
   'splash-logo-margin-top': '20vh'
 }
 
-// TODO: Fix missing image
 const hideSplashScreen = keyframes`
   0% {
     opacity: 1;
@@ -43,12 +40,9 @@ const hideSplashScreen = keyframes`
   }
 `
 
-const splashImg = {
-  'src': '../common/images/logo-transparent.png'
-}
-
+// TODO: Fix invalid reference to missing image
 const ShellSplash = styled('div')`
-  background: url('${splashImg.src}'), #1f2a36;
+  background: url('../common/images/logo-transparent.png'), #1f2a36;
   background-size: 400px ${variables['splash-logo-height']};
   background-position: 50% ${variables['splash-logo-margin-top']};
   height: 100vh;
@@ -82,6 +76,11 @@ const ShellContainer = styled('div')`
   & * {
     box-sizing: border-box;
   }
+
+  @media all and (max-width: 700px) {
+		height: 100%;
+    flex-direction: column;
+	}
 `
 
 const ShellFooter = styled('div')`
@@ -114,6 +113,22 @@ const ShellBlotter = styled('div')`
   overflow: auto;
   order: 2;
   box-sizing: border-box;
+
+  @media all and (max-width: 700px) {
+    flex: 1;
+		min-height: 400px;
+    width: 100%;
+    order: 3;
+	}
+`
+
+const shellBrowserWrapper = css`
+  width: 100vw;
+  height: 100vh;
+
+  @media all and (max-width: 700px) {
+    height: auto;
+  }
 `
 
 const reconnectBtn = css`
@@ -139,7 +154,7 @@ export default class Shell extends React.Component<ShellProps, {}> {
   render() {
     const { sessionExpired, showSplitter } = this.props
     return (
-      <div className={classnames({ shell__browser_wrapper: !this.context.openFin })}>
+      <div className={cx({[shellBrowserWrapper] : !this.context.openFin })}>
         <ShellSplash>
           <ShellSplashMessage>{this.appVersion}<br/>Loading...</ShellSplashMessage>
         </ShellSplash>
