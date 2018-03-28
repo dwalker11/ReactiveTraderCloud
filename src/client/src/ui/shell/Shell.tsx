@@ -11,7 +11,7 @@ import RegionWrapper from '../common/regions/RegionWrapper'
 import * as classnames from 'classnames'
 import TradeNotificationContainer from '../notification/TradeNotificationContainer'
 import * as PropTypes from 'prop-types'
-import styled from 'react-emotion'
+import styled, { css, cx } from 'react-emotion'
 const SplitPane = require('react-split-pane')
 
 
@@ -71,13 +71,6 @@ const ShellFooter = styled('div')`
   height: ${variables['footer-height']};
 `
 
-// TODO: Import 'cx' library to
-const ShellReconnectBtn = styled('button')`
-  min-width: 100px;
-  height: 28px;
-  margin: 20px 10px;
-`
-
 const ShellWorkspaceBlotter = styled('div')`
   height: 100%;
   width: 100%;
@@ -106,6 +99,12 @@ const ShellBlotter = styled('div')`
   box-sizing: border-box;
 `
 
+const reconnectBtn = css`
+  min-width: 100px;
+  height: 28px;
+  margin: 20px 10px;
+`
+
 export interface ShellProps {
   sessionExpired: boolean
   showSplitter: boolean
@@ -120,7 +119,6 @@ export default class Shell extends React.Component<ShellProps, {}> {
   props: ShellProps
   appVersion: string = __VERSION__ // version from package.json exported in webpack.config.js
 
-  // TODO: Import the cx library to "class={'btn shell__button--reconnect'}" below
   render() {
     const { sessionExpired, showSplitter } = this.props
     return (
@@ -133,7 +131,7 @@ export default class Shell extends React.Component<ShellProps, {}> {
             <div>
               <div>Your 15 minute session expired, you are now disconnected from the server.</div>
               <div>Click reconnect to start a new session.</div>
-              <ShellReconnectBtn onClick={this.props.reconnect}>Reconnect</ShellReconnectBtn>
+              <button className={cx('btn', reconnectBtn)} onClick={this.props.reconnect}>Reconnect</button>
             </div>
           </Modal>
 
