@@ -5,11 +5,60 @@ import { connect } from 'react-redux'
 import RegionWrapper from '../common/regions/RegionWrapper'
 import ConnectedSpotTileContainer from '../spotTile/SpotTileContainer'
 import { createDeepEqualSelector } from '../utils/mapToPropsSelectorFactory'
+import styled from 'react-emotion'
 
-const getSpotTileKeys = createDeepEqualSelector(
-  (state:any) => Object.keys(state.currencyPairs),
-  (spotTilesKeys) => spotTilesKeys
-)
+const variables = {
+  'scrollbar-width': '8px',
+  'blotter-height': '20vh',
+  'workspace-height': `calc(100% - 20vh)`, // calc(100% - #{$blotter-height})
+  'workspace-width': `calc(100% - 8px)` // calc(100% - #{$scrollbar-width})
+}
+
+const ShellWorkspace = styled('div')`
+  flex-grow: 1;
+  height: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: ${variables['workspace-width']};
+  order: 1;
+`
+
+const WorkspaceRegion = styled('div')`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  align-content: flex-start;
+  position: relative;
+`
+const WorkspaceRegionIcon = styled('div')`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  width: 75px;
+  height: 75px;
+`
+const WorkspaceRegionItem = styled('div')`
+  flex: 1 340px;
+  align-self: auto;
+  margin: 5px;
+
+  @media all and (max-width: 700px) {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+`
+const WorkspaceRegionSpacer = styled('div')`
+  flex: 1 340px;
+  align-self: auto;
+  margin: 5px;
+`
 
 interface WorkspaceContainerOwnProps {}
 
@@ -24,35 +73,42 @@ type WorkspaceContainerProps =
   & WorkspaceContainerStateProps
   & WorkspaceContainerDispatchProps
 
+// TODO: Add bindings for E2E tests
 export class WorkspaceContainer extends React.Component<WorkspaceContainerProps, {}> {
-
   render() {
-    return <div className="shell__workspace">
-      <div className="workspace-region">
-        {this.renderItems()}
-      </div>
-    </div>
+    return (
+      <ShellWorkspace>
+        <WorkspaceRegion>
+          {this.renderItems()}
+        </WorkspaceRegion>
+      </ShellWorkspace>
+    )
   }
 
   renderItems() {
-
     const { spotTileKeys } = this.props
+
     if (!spotTileKeys || spotTileKeys.length === 0) {
-      return <div className="workspace-region__icon--loading"><i className="fa fa-5x fa-cog fa-spin"/></div>
+      return <WorkspaceRegionIcon><i className="fa fa-5x fa-cog fa-spin"/></WorkspaceRegionIcon>
     }
 
     return spotTileKeys
       .map(key => (
         <RegionWrapper key={key} region={key}>
-          <div className="workspace-region__item">
+          <WorkspaceRegionItem>
             <ConnectedSpotTileContainer id={key}/>
-          </div>
+          </WorkspaceRegionItem>
         </RegionWrapper>
-      )).concat(_.times(6, i => <div key={i} className="workspace-region__spacer"/>))
+      )).concat(_.times(6, i => <WorkspaceRegionSpacer key={i}/>))
   }
 }
 
-function mapStateToProps(state: any) {
+const getSpotTileKeys = createDeepEqualSelector(
+  (state: any) => Object.keys(state.currencyPairs),
+  (spotTilesKeys) => spotTilesKeys
+)
+
+const mapStateToProps = (state: any) => {
   return {
     spotTileKeys: getSpotTileKeys(state)
   }
