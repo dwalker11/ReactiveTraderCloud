@@ -78,6 +78,34 @@ const ShellReconnectBtn = styled('button')`
   margin: 20px 10px;
 `
 
+const ShellWorkspaceBlotter = styled('div')`
+  height: 100%;
+  width: 100%;
+  min-height: 20px;
+  & * {
+    box-sizing: border-box;
+  }
+`
+
+const ShellBlotterContainer = styled('div')`
+  width: 100%;
+  height: auto;
+  overflow: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+`
+
+const ShellBlotter = styled('div')`
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  order: 2;
+  box-sizing: border-box;
+`
+
 export interface ShellProps {
   sessionExpired: boolean
   showSplitter: boolean
@@ -125,20 +153,25 @@ export default class Shell extends React.Component<ShellProps, {}> {
   }
 
   private renderTiles = ():JSX.Element => {
-    return (<div className="shell_workspace_blotter">
-      <WorkspaceContainer/>
-    </div>)
+    return (
+      <ShellWorkspaceBlotter>
+        <WorkspaceContainer/>
+      </ShellWorkspaceBlotter>
+    )
   }
 
   private renderSplitView = ():JSX.Element => {
-    return (<SplitPane minSize={300} size={ 600 } split="horizontal" style={{position: 'relative'}}>
-      <WorkspaceContainer/>
-      <div className="shell__blotter-container"><RegionWrapper region="blotter">
-        <div className="shell__blotter">
-          <BlotterContainer/>
-        </div>
-      </RegionWrapper>
-      </div>
-    </SplitPane>)
+    return (
+      <SplitPane minSize={300} size={ 600 } split="horizontal" style={{position: 'relative'}}>
+        <WorkspaceContainer/>
+        <ShellBlotterContainer>
+          <RegionWrapper region="blotter">
+            <ShellBlotter>
+              <BlotterContainer/>
+            </ShellBlotter>
+          </RegionWrapper>
+        </ShellBlotterContainer>
+      </SplitPane>
+    )
   }
 }
