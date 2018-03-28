@@ -11,10 +11,11 @@ import RegionWrapper from '../common/regions/RegionWrapper'
 import * as classnames from 'classnames'
 import TradeNotificationContainer from '../notification/TradeNotificationContainer'
 import * as PropTypes from 'prop-types'
-import styled, { css, cx } from 'react-emotion'
+import styled, { css, cx, keyframes } from 'react-emotion'
 const SplitPane = require('react-split-pane')
 
 
+// TODO: Import 'facepaint' to handle media breakpoints
 // TODO: Find a better location, ie. theme file
 const variables = {
   'shell-background-color': '#1d2027',
@@ -23,13 +24,29 @@ const variables = {
   'splash-logo-margin-top': '20vh'
 }
 
+// TODO: Fix missing image
+const hideSplashScreen = keyframes`
+  0% {
+    opacity: 1;
+    width: 100vw;
+    height: 100vh;
+  }
+  99% {
+    opacity: 0;
+    width: 100vw;
+    height: 100vh;
+  }
+  100% {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+`
+
 const splashImg = {
   'src': '../common/images/logo-transparent.png'
 }
 
-// TODO: Fix missing image
-// TODO: Import 'keyframes' to handle splash animation
-// TODO: Import 'facepaint' to handle media breakpoints
 const ShellSplash = styled('div')`
   background: url('${splashImg.src}'), #1f2a36;
   background-size: 400px ${variables['splash-logo-height']};
@@ -39,7 +56,7 @@ const ShellSplash = styled('div')`
   background-repeat: no-repeat;
   position: fixed;
   z-index: 100;
-  animation: hideSplashScreen 1s ease-out 2s forwards;
+  animation: ${hideSplashScreen} 1s ease-out 2s forwards;
 `
 
 const ShellSplashMessage = styled('span')`
