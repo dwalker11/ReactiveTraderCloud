@@ -17,6 +17,8 @@ const SplitPane = require('react-split-pane')
 
 // TODO: Find a better location, ie. theme file
 const variables = {
+  'shell-background-color': '#1d2027',
+  'footer-height': '40px',
   'splash-logo-height': '400px',
   'splash-logo-margin-top': '20vh'
 }
@@ -26,12 +28,12 @@ const splashImg = {
 }
 
 // TODO: Fix missing image
-// TODO: Import 'facepaint' to handle media breakpoints
 // TODO: Import 'keyframes' to handle splash animation
+// TODO: Import 'facepaint' to handle media breakpoints
 const ShellSplash = styled('div')`
-  background: url('${props => splashImg.src}'), #1f2a36;
-  background-size: 400px ${props => variables['splash-logo-height']};
-  background-position: 50% ${props => variables['splash-logo-margin-top']};
+  background: url('${splashImg.src}'), #1f2a36;
+  background-size: 400px ${variables['splash-logo-height']};
+  background-position: 50% ${variables['splash-logo-margin-top']};
   height: 100vh;
   width: 100vw;
   background-repeat: no-repeat;
@@ -44,7 +46,7 @@ const ShellSplashMessage = styled('span')`
   text-align: center;
   color: white;
   position: absolute;
-  bottom: calc(100vh - ${props => variables['splash-logo-margin-top']} - ${props => variables['splash-logo-height']} - 50px);
+  bottom: calc(100vh - ${variables['splash-logo-margin-top']} - ${variables['splash-logo-height']} - 50px);
   left: 0;
   right: 0;
   width: 100px;
@@ -52,21 +54,21 @@ const ShellSplashMessage = styled('span')`
   font-size: 18px;
 `
 
-// TODO: Add missing variables
 const ShellContainer = styled('div')`
-  background-color: $shell-background-color;
+  background-color: ${variables['shell-background-color']};
   display: flex;
   flex-flow: row;
   justify-content: flex-end;
-  height: calc(100% - #{$footer-height});
+  height: calc(100% - ${variables['footer-height']});
   width: 100%;
+
   & * {
     box-sizing: border-box;
   }
 `
 
 const ShellFooter = styled('div')`
-  height: $footer-height;
+  height: ${variables['footer-height']};
 `
 
 // TODO: Import 'cx' library to
