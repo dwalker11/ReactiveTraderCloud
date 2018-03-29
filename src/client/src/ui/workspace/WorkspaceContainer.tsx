@@ -21,6 +21,12 @@ const ShellWorkspace = styled('div')`
   overflow-x: hidden;
   width: ${variables['workspace-width']};
   order: 1;
+
+  @media all and (max-width: 700px) {
+    height: auto;
+    width: 100%;
+    flex: 1;
+  }
 `
 
 const WorkspaceRegion = styled('div')`
