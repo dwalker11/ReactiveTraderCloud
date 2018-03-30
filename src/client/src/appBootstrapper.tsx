@@ -2,9 +2,11 @@ import 'babel-polyfill'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
+import { ThemeProvider } from 'emotion-theming'
 import { OpenFin } from './system/openFin'
 import createConnection from './system/service/connection'
 import { User } from './types'
+import theme from './ui/common/styles/untitledTheme'
 import { ShellContainer, OpenFinProvider } from './ui/shell'
 // TODO: change to import when webpack bug solved https://github.com/webpack/webpack/issues/4160
 const config = require('config.json')
@@ -64,7 +66,9 @@ const appBootstrapper = () => {
   ReactDOM.render(
     <Provider store={store}>
       <OpenFinProvider openFin={openFin} isRunningInFinsemble={isRunningInFinsemble}>
-        <ShellContainer />
+        <ThemeProvider theme={theme}>
+          <ShellContainer />
+        </ThemeProvider>
       </OpenFinProvider>
     </Provider>,
     document.getElementById('root')

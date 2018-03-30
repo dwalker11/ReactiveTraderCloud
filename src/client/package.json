@@ -72,6 +72,7 @@
     "d3": "3.5.12",
     "d3-time-format": "2.0.5",
     "emotion": "9.1.0",
+    "emotion-theming": "9.0.0",
     "eslint-plugin-prettier": "2.6.0",
     "font-awesome": "4.5.0",
     "lodash": "3.10.1",
