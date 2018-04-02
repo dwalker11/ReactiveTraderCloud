@@ -17,7 +17,7 @@ const SplitPane = require('react-split-pane')
 // TODO: Find a better location, ie. A theme file, withProps
 const variables = {
   'shell-background-color': '#1d2027',
-  'footer-height': '40px',
+  'footer-height': '60px',
   'splash-logo-height': '400px',
   'splash-logo-margin-top': '20vh'
 }
@@ -66,7 +66,7 @@ const ShellSplashMessage = styled('span')`
 `
 
 const ShellContainer = styled('div')`
-  background-color: ${variables['shell-background-color']};
+  background-image: linear-gradient(103deg, ${props => props.theme.gradients.primary || variables['shell-background-color']});
   display: flex;
   flex-flow: row;
   justify-content: flex-end;

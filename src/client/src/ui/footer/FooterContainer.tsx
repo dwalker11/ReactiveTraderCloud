@@ -5,6 +5,7 @@ import FooterView, { Services } from './FooterView'
 import { bindActionCreators, Dispatch } from 'redux'
 import { toggleStatusServices } from './FooterOperations'
 import { Connections } from '../../connectionStatusOperations'
+import Ribbon from './Ribbon'
 
 interface FooterContainerOwnProps {
 
@@ -29,15 +30,19 @@ class FooterContainer extends React.Component<FooterContainerProps, any> {
   }
 
   render() {
+    const useNewFooter = true
+
     return (
-      <FooterView
-        compositeStatusService={this.props.compositeStatusService}
-        connectionStatus={this.props.connectionStatus}
-        toggleStatusServices={this.props.toggleStatusServices}
-        displayStatusServices={this.props.displayStatusServices}
-        openFin={this.context.openFin}
-        isRunningInOpenFin={!!this.context.openFin}
-      />
+      (useNewFooter)
+        ? <Ribbon />
+        : <FooterView
+            compositeStatusService={this.props.compositeStatusService}
+            connectionStatus={this.props.connectionStatus}
+            toggleStatusServices={this.props.toggleStatusServices}
+            displayStatusServices={this.props.displayStatusServices}
+            openFin={this.context.openFin}
+            isRunningInOpenFin={!!this.context.openFin}
+          />
     )
   }
 }
