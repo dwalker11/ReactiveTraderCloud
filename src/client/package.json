@@ -77,6 +77,8 @@
     "font-awesome": "4.5.0",
     "lodash": "3.10.1",
     "lodash.keyby": "4.6.0",
+    "material-ui": "1.0.0-beta.40",
+    "material-ui-icons": "1.0.0-beta.36",
     "moment": "2.13.0",
     "numeral": "1.5.3",
     "nvd3": "1.8.5",

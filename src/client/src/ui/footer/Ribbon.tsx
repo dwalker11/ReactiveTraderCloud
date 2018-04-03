@@ -1,6 +1,6 @@
 import * as React from 'react'
 import styled, { css } from 'react-emotion'
-// import ArrowUpward from 'material-ui-icons/ArrowUpward'
+import ArrowUpward from 'material-ui-icons/ArrowUpward'
 
 const Ribbon = styled('footer')`
   color: white;
@@ -60,9 +60,13 @@ type ComponentProps = {
   children?: {}
 }
 
-const VerticalRule: React.SFC = (props: ComponentProps) => (
+const ChangeIcon = () => (
+  <ArrowUpward style={{fontSize: '12px'}} />
+)
+
+const VerticalRule: React.SFC = ({ className }: ComponentProps) => (
   <svg
-    className={props.className}
+    className={className}
     width="8"
     height="12"
     viewBox="0 0 8 20"
@@ -115,7 +119,7 @@ const MarketList = () => {
       <Currency>{latestPrice}</Currency>
       <Status>
         <Change>
-          {/*<ArrowUpward />*/}
+          <ChangeIcon />
           {change}
         </Change>
         <VerticalRuleStyled />
