@@ -7,6 +7,7 @@ import './SidebarRegionViewStyles.scss'
 const variables = {
   'panel-background-color': '#293543',
   'analytics-height': '100%',
+  'container-bg-color': '#30333a',
   'active-color': '#262a33',
   'border-color': '#424545',
   'button-height': '50px'
@@ -30,6 +31,14 @@ const ShellSidebar = styled('div')`
   }
 `
 
+const sidebarRegionContent = css`
+  width: 440px;
+`
+
+const sidebarRegionContainerNoContent = css`
+  display: none;
+`
+
 const SidebarRegionContainer = styled('div')`
   background-color: ${variables['container-bg-color']};
   height: 100%;
@@ -38,10 +47,12 @@ const SidebarRegionContainer = styled('div')`
   overflow: hidden;
 `
 
-const SidebarRegionElement = styled('div')`
-  border-left: 1px solid ${variables['border-color']};
-  width: 100%;
-  flex: 1;
+const sidebarRegionElementButton = css`
+  height: ${variables['button-height']};
+  color: white;
+  text-align: center;
+  padding: 20px 10px;
+  cursor: pointer;
 `
 
 const sidebarRegionElementActive = css`
@@ -67,20 +78,10 @@ const sidebarRegionElementInactive = css`
   }
 `
 
-const sidebarRegionElementButton = css`
-  height: ${variables['button-height']};
-  color: white;
-  text-align: center;
-  padding: 20px 10px;
-  cursor: pointer;
-`
-
-const sidebarRegionContent = css`
-  width: 440px;
-`
-
-const sidebarRegionContainerNoContent = css`
-  display: none;
+const SidebarRegionElement = styled('div')`
+  border-left: 1px solid ${variables['border-color']};
+  width: 100%;
+  flex: 1;
 `
 
 interface SidebarRegionViewProps {

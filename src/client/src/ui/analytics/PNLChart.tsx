@@ -1,11 +1,11 @@
 /* tslint:disable */
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import * as classnames from 'classnames'
 // tslint:disable-next-line:noImplicitAny
 import * as NVD3Chart from 'react-nvd3'
 import { timeFormat } from 'd3-time-format'
 import * as numeral from 'numeral'
+import styled, { css, cx } from 'react-emotion'
 
 import ChartGradient from './chartGradient'
 
@@ -79,11 +79,8 @@ export default class PNLChart extends React.Component<PNLChartProps, {}> {
   render() {
     const { lastPos, minPnl, maxPnl, options, seriesData } = this.props
 
-    const analyticsHeaderClassName = classnames('analytics__header-value', {
-      'analytics__header-value--negative': lastPos < 0,
-      'analytics__header-value--positive': lastPos > 0
-    })
     const formattedLastPos = numeral(lastPos).format()
+
     let pnlChart: any = null
 
     if (this.props.seriesData.length >= 0) {
@@ -97,6 +94,7 @@ export default class PNLChart extends React.Component<PNLChartProps, {}> {
             ${formatted}
           </p>`
         }
+
         chart.yDomain([minPnl, maxPnl]).yRange([150, 0])
         chart.interactiveLayer.tooltip.contentGenerator(pnlTooltip)
       }
@@ -116,18 +114,96 @@ export default class PNLChart extends React.Component<PNLChartProps, {}> {
       pnlChart = (<div>No PNL data yet</div>)
     }
 
+    const variables = {
+      'analytics-header-colour': '#ffffff',
+      'barchart-text-color': 'gray',
+      'positive': '#6db910',
+      'negative': '#d62728',
+    }
+
+    const AnalyticsHeader = styled('div')`
+      font-size: 16px;
+      color: ${variables['analytics-header-colour']};
+      /* padding-bottom: 10px; */
+
+      border-bottom: 1px solid ${props => props.theme.colors.info || variables['analytics-header-colour']}
+    `
+
+    const AnalyticsHeaderTitle = styled('span')`
+      color: ${props => props.theme.colors.info || variables['analytics-header-colour']};
+      padding-bottom: 2px;
+      font-family: BrandonRegular;
+      /* font-size: 24px; */
+      /* display: block; */
+    `
+
+    const analyticsHeaderValueNegative = css`
+      color: ${variables['negative-color']}
+    `
+
+    const analyticsHeaderValuePositive = css`
+      color: ${variables['positive-color']};
+    `
+
+    const RawAnalyticsHeaderValue: React.SFC = ({className, children}: {className?: string, children?: string}) => {
+      const styles = cx(
+        className,
+        { [analyticsHeaderValueNegative]: lastPos < 0 },
+        { [analyticsHeaderValuePositive]: lastPos > 0 }
+      )
+
+      return (
+        <span className={styles}>
+          {children}
+        </span>
+      )
+    }
+
+    const AnalyticsHeaderValue = styled(RawAnalyticsHeaderValue)`
+      font-weight: bold;
+      font-family: BrandonRegular;
+      
+      float: right;
+    `
+
+    const AnalyticsChartContainer = styled('div')`
+      position: relative;
+      background: inherit;
+      width: 100%;
+      font-family: BrandonMedium;
+      font-size: 14px;
+      margin-bottom: 20px;
+
+      .nv-lineChart {
+        .nv-axis.nv-y {
+          text {
+            font-size: 10px;
+            fill: ${variables['barchart-text-color']};
+            fill: #c2c5c9;
+            font-family: BrandonLight;
+          }
+        }
+    
+        .nv-axis.nv-x {
+          text {
+            font-size: 10px;
+            fill: ${variables['barchart-text-color']};
+            fill: #c2c5c9;
+            font-family: BrandonLight;
+          }
+        }
+      }
+    `
+
     return (
       <div>
-        <div className="analytics__header">
-          <span className="analytics__header-title">
-            <i className="analytics__header-title-icon glyphicon glyphicon-stats"></i>
-            Profit &amp; Loss
-          </span>
-          <span className={analyticsHeaderClassName}>USD {formattedLastPos}</span>
-        </div>
-        <div className="analytics__chart-container">
+        <AnalyticsHeader>
+          <AnalyticsHeaderTitle>PROFIT AND LOSS</AnalyticsHeaderTitle>
+          <AnalyticsHeaderValue>USD {formattedLastPos}</AnalyticsHeaderValue>
+        </AnalyticsHeader>
+        <AnalyticsChartContainer>
           {pnlChart}
-        </div>
+        </AnalyticsChartContainer>
       </div>
     )
   }
