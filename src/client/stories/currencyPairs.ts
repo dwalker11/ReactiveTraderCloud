@@ -3,8 +3,7 @@ import { CurrencyPair } from '../src/types/currencyPair'
 export const symbols = ['AAABBB', 'BBBCCC', 'AAACCC', 'BBBAAA', 'CCCAAA', 'CCCBBB']
 
 export const getCurrencyPairs = (ccySymbols = symbols) => {
-
-  return ccySymbols.map((symbol:string) => {
+  return ccySymbols.map((symbol: string) => {
     return {
       symbol,
       ratePrecision: 3,
@@ -15,7 +14,7 @@ export const getCurrencyPairs = (ccySymbols = symbols) => {
   })
 }
 
-export const getCurrencyPair = (symbol:string = 'USDEUR'):CurrencyPair => {
+export const getCurrencyPair = (symbol: string = 'USDEUR'): CurrencyPair => {
   return {
     symbol,
     ratePrecision: 3,

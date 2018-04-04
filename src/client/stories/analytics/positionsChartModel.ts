@@ -9,10 +9,10 @@ export const positionsChartModelData = {
         ratePrecision: 5,
         pipsPosition: 4,
         base: 'EUR',
-        terms: 'CAD',
+        terms: 'CAD'
       },
       basePnlName: 'basePnl',
-      baseTradedAmountName: 'baseTradedAmount',
+      baseTradedAmountName: 'baseTradedAmount'
     },
     {
       symbol: 'AUDUSD',
@@ -23,10 +23,10 @@ export const positionsChartModelData = {
         ratePrecision: 5,
         pipsPosition: 4,
         base: 'AUD',
-        terms: 'USD',
+        terms: 'USD'
       },
       basePnlName: 'basePnl',
-      baseTradedAmountName: 'baseTradedAmount',
+      baseTradedAmountName: 'baseTradedAmount'
     },
     {
       symbol: 'EURJPY',
@@ -37,10 +37,10 @@ export const positionsChartModelData = {
         ratePrecision: 3,
         pipsPosition: 2,
         base: 'EUR',
-        terms: 'JPY',
+        terms: 'JPY'
       },
       basePnlName: 'basePnl',
-      baseTradedAmountName: 'baseTradedAmount',
+      baseTradedAmountName: 'baseTradedAmount'
     },
     {
       symbol: 'USDJPY',
@@ -51,10 +51,10 @@ export const positionsChartModelData = {
         ratePrecision: 3,
         pipsPosition: 2,
         base: 'USD',
-        terms: 'JPY',
+        terms: 'JPY'
       },
       basePnlName: 'basePnl',
-      baseTradedAmountName: 'baseTradedAmount',
+      baseTradedAmountName: 'baseTradedAmount'
     },
     {
       symbol: 'GBPUSD',
@@ -65,10 +65,10 @@ export const positionsChartModelData = {
         ratePrecision: 5,
         pipsPosition: 4,
         base: 'GBP',
-        terms: 'USD',
+        terms: 'USD'
       },
       basePnlName: 'basePnl',
-      baseTradedAmountName: 'baseTradedAmount',
+      baseTradedAmountName: 'baseTradedAmount'
     },
     {
       symbol: 'EURUSD',
@@ -79,10 +79,10 @@ export const positionsChartModelData = {
         ratePrecision: 5,
         pipsPosition: 4,
         base: 'EUR',
-        terms: 'USD',
+        terms: 'USD'
       },
       basePnlName: 'basePnl',
-      baseTradedAmountName: 'baseTradedAmount',
+      baseTradedAmountName: 'baseTradedAmount'
     },
     {
       symbol: 'NZDUSD',
@@ -93,10 +93,10 @@ export const positionsChartModelData = {
         ratePrecision: 5,
         pipsPosition: 4,
         base: 'NZD',
-        terms: 'USD',
+        terms: 'USD'
       },
       basePnlName: 'basePnl',
-      baseTradedAmountName: 'baseTradedAmount',
+      baseTradedAmountName: 'baseTradedAmount'
     },
     {
       symbol: 'EURAUD',
@@ -107,11 +107,11 @@ export const positionsChartModelData = {
         ratePrecision: 5,
         pipsPosition: 4,
         base: 'EUR',
-        terms: 'AUD',
+        terms: 'AUD'
       },
       basePnlName: 'basePnl',
-      baseTradedAmountName: 'baseTradedAmount',
-    },
+      baseTradedAmountName: 'baseTradedAmount'
+    }
   ],
   options: {
     showYAxis: true,
@@ -123,13 +123,13 @@ export const positionsChartModelData = {
     showControls: false,
     width: 900,
     tooltip: {
-      enabled: false,
+      enabled: false
     },
     margin: {
       top: 0,
       right: 0,
-      bottom: 0,
-    },
+      bottom: 0
+    }
   },
-  yAxisValuePropertyName: 'baseTradedAmount',
+  yAxisValuePropertyName: 'baseTradedAmount'
 }

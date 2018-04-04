@@ -4,7 +4,7 @@ const footerProps = {
   connectionUrl: 'wss://web.adaptivecluster.com:8000/ws',
   isConnectedToBroker: true,
   isRunningInOpenFin: false,
-  shouldShowServiceStatus: false,
+  shouldShowServiceStatus: false
 }
 
 export default footerProps
